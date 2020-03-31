@@ -353,9 +353,13 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jap-YD-CAM">
                                 <rect key="frame" x="153" y="162" width="113" height="30"/>
                                 <state key="normal" title="Add Image"/>
+                                <connections>
+                                    <action selector="addImageBtn:" destination="8Rg-cu-JWf" eventType="touchUpInside" id="KUc-Np-ERc"/>
+                                </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jKh-N9-rE3">
-                                <rect key="frame" x="168" y="74" width="80" height="80"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jKh-N9-rE3">
+                                <rect key="frame" x="168" y="74.5" width="80" height="79"/>
+                                <color key="tintColor" red="1" green="0.91164254509999998" blue="0.061313721949999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="xri-A2-pEm"/>
                                 </constraints>
@@ -488,6 +492,9 @@
                         <viewLayoutGuide key="safeArea" id="GvD-xk-ul4"/>
                     </view>
                     <navigationItem key="navigationItem" id="CQ8-4p-xzj"/>
+                    <connections>
+                        <outlet property="imageOutlet" destination="jKh-N9-rE3" id="ooL-cE-rXa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uLc-hM-hJb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -534,6 +541,7 @@
         <image name="house" catalog="system" width="64" height="54"/>
         <image name="line.horizontal.3" catalog="system" width="64" height="32"/>
         <image name="person" catalog="system" width="64" height="58"/>
+        <image name="person.circle" catalog="system" width="64" height="60"/>
         <image name="person.crop.circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>

@@ -32,6 +32,7 @@
 		45506DFD2433564F00510CDA /* CountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45506DFB2433564F00510CDA /* CountryTableViewCell.xib */; };
 		45506E002433A10A00510CDA /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45506DFE2433A10A00510CDA /* AccountTableViewCell.swift */; };
 		45506E012433A10A00510CDA /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45506DFF2433A10A00510CDA /* AccountTableViewCell.xib */; };
+		45506E032433A71800510CDA /* joinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45506E022433A71800510CDA /* joinViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		45506DFB2433564F00510CDA /* CountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryTableViewCell.xib; sourceTree = "<group>"; };
 		45506DFE2433A10A00510CDA /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		45506DFF2433A10A00510CDA /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
+		45506E022433A71800510CDA /* joinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = joinViewController.swift; path = ../joinViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				454D83C324252F1C00490CE4 /* AccountViewController.swift */,
+				45506E022433A71800510CDA /* joinViewController.swift */,
 				45506DFE2433A10A00510CDA /* AccountTableViewCell.swift */,
 				45506DFF2433A10A00510CDA /* AccountTableViewCell.xib */,
 				45506DEA24333F1500510CDA /* LanguageTableViewCell.swift */,
@@ -357,6 +360,7 @@
 			files = (
 				45506DE524333A8500510CDA /* joinViewController.swift in Sources */,
 				454D83B72424F2FC00490CE4 /* MyCartVC.swift in Sources */,
+				45506E032433A71800510CDA /* joinViewController.swift in Sources */,
 				454D83B12424DD9100490CE4 /* WishlistVC.swift in Sources */,
 				45506E002433A10A00510CDA /* AccountTableViewCell.swift in Sources */,
 				454D83C424252F1C00490CE4 /* AccountViewController.swift in Sources */,
