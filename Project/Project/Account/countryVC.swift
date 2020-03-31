@@ -11,8 +11,13 @@ import UIKit
 class countryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    
     let language = Locale.isoLanguageCodes.compactMap { Locale.current.localizedString(forLanguageCode: $0) }
     var countriesData = Locale.isoRegionCodes.compactMap { Locale.current.localizedString(forRegionCode: $0) }
+    
+    
+
+    
     
      public static var cellMode: String = "None"
 
@@ -21,14 +26,12 @@ class countryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
         // Do any additional setup after loading the view.
         
-        tableView.delegate = self as UITableViewDelegate
-        tableView.dataSource = self as UITableViewDataSource
         
-        let nib = UINib(nibName: "LanguageListTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "LanguageListTableCell")
+        let nib = UINib(nibName: "languagepickerTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "languagePicker")
         
-        let nib2 = UINib(nibName: "CountryListTableViewCell", bundle: nil)
-        tableView.register(nib2, forCellReuseIdentifier: "CountryListTableCell")
+        let nib2 = UINib(nibName: "countrypickerTableViewCell", bundle: nil)
+        tableView.register(nib2, forCellReuseIdentifier: "countryPicker")
         
         
         
@@ -45,6 +48,7 @@ class countryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 return 0
             }
         }
+    
         
         //MARK: Cell For Row
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,7 +88,7 @@ class countryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 
             else {
                
-                AccountViewController.languageName = String(language[indexPath.row].prefix(3))
+                AccountViewController.languageName = String(language[indexPath.row].prefix(3).uppercased())
             }
             
             self.navigationController?.popViewController(animated: true)

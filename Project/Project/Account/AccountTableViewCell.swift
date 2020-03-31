@@ -11,38 +11,30 @@ import UIKit
 class AccountTableViewCell: UITableViewCell {
 
     @IBOutlet weak var icon: UIImageView!
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var name: UILabel!
-
+    
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+            super.awakeFromNib()
+            // Initialization code
+        }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        override func setSelected(_ selected: Bool, animated: Bool) {
+            super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    }
+            // Configure the view for the selected state
+        }
 
-    func setValueToLabel(text: String) {
+        func setValueToLabel(text: String) {
+            
+            name.text = text
+        }
         
-        title.text = text
+        func setImage(image: UIImage) {
+            
+            icon.image = image
+        }
+        
+        
     }
     
-    func setImage(image: UIImage) {
-        
-        icon.image = image
-    }
-    
-    func setExtraImage(image: UIImage) {
-        
-        img.image = image
-    }
-    
-    func setExtraLabel(text: String) {
-        
-        name.text = text
-    }
-}
+

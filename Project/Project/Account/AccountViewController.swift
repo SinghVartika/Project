@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var imageOutlet: UIImageView!
     @IBOutlet weak var tbview: UITableView!
@@ -43,6 +43,13 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
         
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tbview.reloadData()
+    }
+    
     @IBAction func addImageBtn(_ sender: Any) {
             let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
@@ -104,8 +111,6 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
      let vc = storyboard.instantiateViewController(withIdentifier: "joinViewController")
     self.navigationController!.pushViewController(vc, animated: true)
     }
-}
-extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
          
@@ -119,8 +124,8 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
             
             let cell = tbview.dequeueReusableCell(withIdentifier: "CountryTableCell", for: indexPath) as! CountryTableViewCell
             
-            cell.setCountryIconImageView(image: AccountViewController.flagImage)
-            cell.setCountryTitleLabel(text: AccountViewController.countryName)
+            cell.setCountryIconImageView(image: imgarr[1][0])
+            cell.setCountryTitleLabel(text: arr[1][0])
             cell.setCountryFlagImageView(image: AccountViewController.flagImage)
             cell.setCountryNameLabel(text: AccountViewController.countryName)
             
@@ -130,7 +135,7 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
             
         else if indexPath.section == 1 && indexPath.row == 1 {
            
-            let cell = tbview.dequeueReusableCell(withIdentifier: "languagePicker", for: indexPath) as! LanguageTableViewCell
+            let cell = tbview.dequeueReusableCell(withIdentifier: "LanguageTableCell", for: indexPath) as! LanguageTableViewCell
             
             cell.setLaguageIconImageView(image: imgarr[1][1])
             cell.setLanguageTitleLabel(text: arr[1][1])
@@ -142,13 +147,19 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
       
         else {
             
-            let cell = tbview.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AccountTableViewCell
+            let cell = tbview.dequeueReusableCell(withIdentifier: "AccountTableCell", for: indexPath) as! AccountTableViewCell
         
             cell.setValueToLabel(text: arr[indexPath.section][indexPath.row])
             cell.setImage(image: imgarr[indexPath.section][indexPath.row])
         
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        
+        return 70
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -168,11 +179,11 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
         
         if indexPath.section == 1 && indexPath.row == 0 {
             
-            print("India")
+            print("Country")
             countryVC.cellMode = "Country"
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "CountryAndLanguageViewController")
+            let vc = storyboard.instantiateViewController(withIdentifier: "countryVC")
             
             self.navigationController?.pushViewController(vc, animated: true)
             
@@ -184,10 +195,11 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
             countryVC.cellMode = "Language"
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "CountryAndLanguageViewController")
+            let vc = storyboard.instantiateViewController(withIdentifier: "countryVC")
             
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        
     
 }
 }

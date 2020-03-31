@@ -21,8 +21,6 @@
 		454D83C424252F1C00490CE4 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454D83C324252F1C00490CE4 /* AccountViewController.swift */; };
 		45506DE324333A4900510CDA /* signInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45506DE224333A4900510CDA /* signInViewController.swift */; };
 		45506DE524333A8500510CDA /* joinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45506DE424333A8500510CDA /* joinViewController.swift */; };
-		45506DE824333F0100510CDA /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45506DE624333F0100510CDA /* AccountTableViewCell.swift */; };
-		45506DE924333F0100510CDA /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45506DE724333F0100510CDA /* AccountTableViewCell.xib */; };
 		45506DEC24333F1500510CDA /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45506DEA24333F1500510CDA /* LanguageTableViewCell.swift */; };
 		45506DED24333F1500510CDA /* LanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45506DEB24333F1500510CDA /* LanguageTableViewCell.xib */; };
 		45506DF1243349D300510CDA /* countryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45506DF0243349D300510CDA /* countryVC.swift */; };
@@ -32,6 +30,8 @@
 		45506DF924334EEC00510CDA /* languagepickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45506DF724334EEC00510CDA /* languagepickerTableViewCell.xib */; };
 		45506DFC2433564F00510CDA /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45506DFA2433564F00510CDA /* CountryTableViewCell.swift */; };
 		45506DFD2433564F00510CDA /* CountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45506DFB2433564F00510CDA /* CountryTableViewCell.xib */; };
+		45506E002433A10A00510CDA /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45506DFE2433A10A00510CDA /* AccountTableViewCell.swift */; };
+		45506E012433A10A00510CDA /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45506DFF2433A10A00510CDA /* AccountTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +72,6 @@
 		454D83C324252F1C00490CE4 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		45506DE224333A4900510CDA /* signInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signInViewController.swift; sourceTree = "<group>"; };
 		45506DE424333A8500510CDA /* joinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = joinViewController.swift; sourceTree = "<group>"; };
-		45506DE624333F0100510CDA /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
-		45506DE724333F0100510CDA /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
 		45506DEA24333F1500510CDA /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
 		45506DEB24333F1500510CDA /* LanguageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageTableViewCell.xib; sourceTree = "<group>"; };
 		45506DF0243349D300510CDA /* countryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = countryVC.swift; sourceTree = "<group>"; };
@@ -83,6 +81,8 @@
 		45506DF724334EEC00510CDA /* languagepickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = languagepickerTableViewCell.xib; sourceTree = "<group>"; };
 		45506DFA2433564F00510CDA /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		45506DFB2433564F00510CDA /* CountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryTableViewCell.xib; sourceTree = "<group>"; };
+		45506DFE2433A10A00510CDA /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
+		45506DFF2433A10A00510CDA /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,8 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				454D83C324252F1C00490CE4 /* AccountViewController.swift */,
-				45506DE624333F0100510CDA /* AccountTableViewCell.swift */,
-				45506DE724333F0100510CDA /* AccountTableViewCell.xib */,
+				45506DFE2433A10A00510CDA /* AccountTableViewCell.swift */,
+				45506DFF2433A10A00510CDA /* AccountTableViewCell.xib */,
 				45506DEA24333F1500510CDA /* LanguageTableViewCell.swift */,
 				45506DEB24333F1500510CDA /* LanguageTableViewCell.xib */,
 				45506DFA2433564F00510CDA /* CountryTableViewCell.swift */,
@@ -324,8 +324,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				45506DFD2433564F00510CDA /* CountryTableViewCell.xib in Resources */,
+				45506E012433A10A00510CDA /* AccountTableViewCell.xib in Resources */,
 				454D838A2424D97000490CE4 /* LaunchScreen.storyboard in Resources */,
-				45506DE924333F0100510CDA /* AccountTableViewCell.xib in Resources */,
 				45506DF524334ED000510CDA /* countrypickerTableViewCell.xib in Resources */,
 				454D83872424D97000490CE4 /* Assets.xcassets in Resources */,
 				45506DED24333F1500510CDA /* LanguageTableViewCell.xib in Resources */,
@@ -358,7 +358,7 @@
 				45506DE524333A8500510CDA /* joinViewController.swift in Sources */,
 				454D83B72424F2FC00490CE4 /* MyCartVC.swift in Sources */,
 				454D83B12424DD9100490CE4 /* WishlistVC.swift in Sources */,
-				45506DE824333F0100510CDA /* AccountTableViewCell.swift in Sources */,
+				45506E002433A10A00510CDA /* AccountTableViewCell.swift in Sources */,
 				454D83C424252F1C00490CE4 /* AccountViewController.swift in Sources */,
 				45506DF424334ED000510CDA /* countrypickerTableViewCell.swift in Sources */,
 				45506DF824334EEC00510CDA /* languagepickerTableViewCell.swift in Sources */,
