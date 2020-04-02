@@ -10,7 +10,7 @@ import UIKit
 
 class countrypickerTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var flag: UIImageView!
+    @IBOutlet weak var flag: UILabel!
     @IBOutlet weak var country: UILabel!
     
     override func awakeFromNib() {
@@ -24,9 +24,9 @@ class countrypickerTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setFlag(image: UIImage) {
+    func setFlag(text: String) {
         
-        flag.image = image
+        flag.text = text
     }
     
     func setCountry(text: String) {

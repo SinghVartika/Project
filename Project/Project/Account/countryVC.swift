@@ -14,8 +14,18 @@ class countryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let language = Locale.isoLanguageCodes.compactMap { Locale.current.localizedString(forLanguageCode: $0) }
     var countriesData = Locale.isoRegionCodes.compactMap { Locale.current.localizedString(forRegionCode: $0) }
-    
-    
+    var countryCode = Locale.isoRegionCodes
+//    var id : [String] = []
+//    var countriesData : [String] = []
+//
+    func flag(country:String) -> String {
+        let base : UInt32 = 127397
+        var s = ""
+        for v in country.unicodeScalars {
+            s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
+        }
+        return String(s)
+    }
 
     
     
@@ -24,7 +34,6 @@ class countryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         
         
         let nib = UINib(nibName: "languagepickerTableViewCell", bundle: nil)
@@ -58,7 +67,7 @@ class countryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "countryPicker", for: indexPath) as! countrypickerTableViewCell
                 
                 cell.setCountry(text: countriesData[indexPath.row])
-                cell.setFlag(image: #imageLiteral(resourceName: "Country"))
+                cell.setFlag(text: flag(country: countryCode[indexPath.row]))
  
                 
                 return cell
@@ -83,7 +92,7 @@ class countryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             if countryVC.cellMode == "Country" {
                 
                 AccountViewController.countryName = countriesData[indexPath.row]
-                AccountViewController.flagImage = #imageLiteral(resourceName: "Country")
+                AccountViewController.flagImage = flag(country: countryCode[indexPath.row])
             }
                 
             else {

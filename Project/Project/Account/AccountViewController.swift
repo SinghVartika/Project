@@ -16,9 +16,19 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
     @IBOutlet weak var jbtn: UIButton!
     @IBOutlet weak var contentStackView: UIView!
     
+    func flag(country:String) -> String {
+        let base : UInt32 = 127397
+        var s = ""
+        for v in country.unicodeScalars {
+            s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
+        }
+        return String(s)
+    }
+
+    
     public static var languageName: String = "ENGLISH"
     public static var countryName: String = "IND"
-    public static var flagImage: UIImage = #imageLiteral(resourceName: "Country")
+    public static var flagImage: String = "🇮🇳"
     
     let arr = [ ["Track Order", "Size Chart", "Notifications", "Store Location"], ["Country", "Language", "About Us", "FAQ", "Shipping & Returns"] ]
     
@@ -179,7 +189,7 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
         
         if indexPath.section == 1 && indexPath.row == 0 {
             
-            print("Country")
+            
             countryVC.cellMode = "Country"
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -191,7 +201,7 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
             
         else if indexPath.section == 1 && indexPath.row == 1 {
             
-            print("English")
+            
             countryVC.cellMode = "Language"
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

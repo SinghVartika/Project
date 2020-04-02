@@ -12,7 +12,7 @@ class CountryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var flag: UIImageView!
+    @IBOutlet weak var flag: UILabel!
     @IBOutlet weak var name: UILabel!
 
     override func awakeFromNib() {
@@ -34,8 +34,8 @@ class CountryTableViewCell: UITableViewCell {
         title.text = text
     }
     
-    func setCountryFlagImageView(image: UIImage) {
-        flag.image = image
+    func setCountryFlagImageView(image: String) {
+        flag.text = image
     }
     
     func setCountryNameLabel(text: String) {
