@@ -91,7 +91,7 @@ class countryVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             if countryVC.cellMode == "Country" {
                 
-                AccountViewController.countryName = countriesData[indexPath.row]
+                AccountViewController.countryName = String(countriesData[indexPath.row].prefix(3).uppercased())
                 AccountViewController.flagImage = flag(country: countryCode[indexPath.row])
             }
                 
