@@ -20,7 +20,7 @@
        var employee_age: String?
      }
 
-    class CardViewController: UIViewController {
+    class CardViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
         @IBOutlet weak var cardTableView: UITableView!
         
@@ -29,8 +29,8 @@
         override func viewDidLoad() {
             super.viewDidLoad()
             
-            cardTableView.delegate = self as? UITableViewDelegate
-            cardTableView.dataSource = self as? UITableViewDataSource
+            cardTableView.delegate = self
+            cardTableView.dataSource = self
             
             let nib = UINib.init(nibName: "CardTableViewCell", bundle: nil)
             cardTableView.register(nib, forCellReuseIdentifier: "CardCell")
@@ -74,13 +74,13 @@
                 //To make the cell look like card view
                 cell.backgroundColor = .clear
                 cell.layer.masksToBounds = false
-                cell.layer.shadowOpacity = 0.5
-                cell.layer.shadowRadius = 4
-                cell.layer.shadowOffset = CGSize(width: 0, height: 2)
-                cell.layer.shadowColor = UIColor.white.cgColor
+                cell.layer.shadowOpacity = 0.7
+                cell.layer.shadowRadius = 12
+                cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+                cell.layer.shadowColor = UIColor.gray.cgColor
                 cell.contentView.backgroundColor = .white
                 cell.contentView.layer.borderWidth = 3.0
-                cell.contentView.layer.cornerRadius = 10
+                cell.contentView.layer.cornerRadius = 20
                 
                 cell.dataCell(arr: responseModel?.data?[indexPath.row])
                 return cell

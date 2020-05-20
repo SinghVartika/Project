@@ -31,7 +31,11 @@ struct Data: Codable {
     var media_type: String?
 }
 
-class HomeVC: UIViewController {
+class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var movieTableView : UITableView!
+    
+    var sections = ["Action","Drama","Science Fiction","Kids","Horror"]
     
     var responseModel: Trending?
     
@@ -39,7 +43,31 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         getData()
         
+        let nib = UINib.init(nibName: "CustomTableViewCell", bundle: nil)
+        movieTableView.register(nib, forCellReuseIdentifier: "TableCell")
+        
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! CustomTableViewCell
+        return cell
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section]
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
     
     //API call
     func getData() {
@@ -58,19 +86,19 @@ class HomeVC: UIViewController {
                     } catch { print(error) }
                 }
                 
-                //                        self?.employeesTableView.reloadData()
+                //                          self?.employeesTableView.reloadData()
         }
     }
     
     
     
     /*
-     // MARK: - Navigation
+     MARK: - Navigation
      
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+     Get the new view controller using segue.destination.
+     Pass the selected object to the new view controller.
      }
      */
     
