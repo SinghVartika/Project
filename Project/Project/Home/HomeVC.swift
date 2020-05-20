@@ -10,31 +10,30 @@ import UIKit
 import Alamofire
 
 struct Trending: Codable{
-    let page: String?
-    let data: [Result]
+    let page: Int?
+    let results: [Data]
 }
 
-struct Result: Codable {
-    var id: String?
-    var video: String?
-    var vote_count: String?
-    var vote_average: String?
+struct Data: Codable {
+    var id: Int?
+    var video: Bool?
+    var vote_count: Int?
+    var vote_average: Float?
     var title: String?
-    var genre_id: [Int]
     var release_date: String?
     var original_language: String?
     var original_title: String?
     var backdrop_path: String?
-    var adult: String?
+    var adult: Bool?
     var overview: String?
     var poster_path: String?
-    var popularity: String?
+    var popularity: Float?
     var media_type: String?
 }
 
 class HomeVC: UIViewController {
     
-    var responseModel: Result?
+    var responseModel: Trending?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +52,7 @@ class HomeVC: UIViewController {
                     do {
                         let decoder = JSONDecoder()
                         decoder.keyDecodingStrategy = .useDefaultKeys
-                        let result = try decoder.decode(Result.self, from: data)
+                        let result = try decoder.decode(Trending.self, from: data)
                         self?.responseModel = result
                         print(result)
                     } catch { print(error) }

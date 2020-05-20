@@ -252,12 +252,8 @@
 			isa = PBXGroup;
 			children = (
 				45F6FD7024754971008DF5DD /* EmployeeVC.swift */,
-				4599502424753D6F0018B629 /* CardViewController.swift */,
-				45F6FD6C247541F1008DF5DD /* CardTableViewCell.swift */,
-				45F6FD6D247541F1008DF5DD /* CardTableViewCell.xib */,
-				45F6FD6A24753EF1008DF5DD /* TableViewController.swift */,
-				459950102472BB6C0018B629 /* EmployeeTableViewCell.swift */,
-				459950112472BB6C0018B629 /* EmployeeTableViewCell.xib */,
+				45F6FD7324754E4E008DF5DD /* Table */,
+				45F6FD7224754E40008DF5DD /* Card  */,
 			);
 			path = Employees;
 			sourceTree = "<group>";
@@ -340,6 +336,26 @@
 				45B84143246FF9E90038D146 /* style.swift */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		45F6FD7224754E40008DF5DD /* Card  */ = {
+			isa = PBXGroup;
+			children = (
+				4599502424753D6F0018B629 /* CardViewController.swift */,
+				45F6FD6C247541F1008DF5DD /* CardTableViewCell.swift */,
+				45F6FD6D247541F1008DF5DD /* CardTableViewCell.xib */,
+			);
+			path = "Card ";
+			sourceTree = "<group>";
+		};
+		45F6FD7324754E4E008DF5DD /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				45F6FD6A24753EF1008DF5DD /* TableViewController.swift */,
+				459950102472BB6C0018B629 /* EmployeeTableViewCell.swift */,
+				459950112472BB6C0018B629 /* EmployeeTableViewCell.xib */,
+			);
+			path = Table;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

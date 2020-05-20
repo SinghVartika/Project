@@ -24,8 +24,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var employeesTableView: UITableView!
     
-    
-    var responseModel: TBaseModel?
+        var responseModel: TBaseModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +49,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         decoder.keyDecodingStrategy = .useDefaultKeys
                         let result = try decoder.decode(TBaseModel.self, from: data)
                         self?.responseModel = result
-                        print(result)
+                        //print(result)
                     } catch { print(error) }
                 }
                 

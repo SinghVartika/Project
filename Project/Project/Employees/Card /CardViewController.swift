@@ -50,8 +50,8 @@
                             let decoder = JSONDecoder()
                             decoder.keyDecodingStrategy = .useDefaultKeys
                             let result = try decoder.decode(BaseModel.self, from: data)
-                            //self?.responseModel = result
-                            print(result)
+                            self?.responseModel = result
+                            //print(result)
                         } catch { print(error) }
                     }
                     self?.cardTableView.reloadData()

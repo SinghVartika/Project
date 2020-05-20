@@ -89,21 +89,6 @@
             </objects>
             <point key="canvasLocation" x="910.14492753623199" y="785.49107142857144"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="gA8-Ck-Jjn">
-            <objects>
-                <viewController storyboardIdentifier="ViewController" id="zK0-h9-hYD" customClass="ViewController" customModule="Project" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Fi2-Ao-HSl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="Lsc-L7-ISM"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3GX-GT-c4y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2293" y="1198"/>
-        </scene>
         <!--Favourites-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
@@ -657,27 +642,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="694"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Nx-4D-Lip">
-                                <rect key="frame" x="20" y="44" width="374" height="650"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RSL-LN-NDJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="694"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="1Nx-4D-Lip" firstAttribute="leading" secondItem="PfA-ch-Ldx" secondAttribute="leadingMargin" id="0pW-4v-REU"/>
-                            <constraint firstItem="1Nx-4D-Lip" firstAttribute="top" secondItem="PfA-ch-Ldx" secondAttribute="topMargin" id="12z-t9-Rc1"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="1Nx-4D-Lip" secondAttribute="bottom" id="6cK-dX-HNb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="1Nx-4D-Lip" secondAttribute="trailing" id="jv6-wq-NFc"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="tC2-nc-phS"/>
                     </view>
                     <connections>
-                        <outlet property="cardTableView" destination="1Nx-4D-Lip" id="FGg-Pu-HIc"/>
+                        <outlet property="cardTableView" destination="RSL-LN-NDJ" id="yv0-BO-zg6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uDh-Mc-e35" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="557" y="1489"/>
+            <point key="canvasLocation" x="556.52173913043487" y="1488.6160714285713"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="xQz-n5-udv">
