@@ -43,6 +43,9 @@
 		45F6FD7E24767508008DF5DD /* TrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F6FD7C24767508008DF5DD /* TrendingCollectionViewCell.swift */; };
 		45F6FD7F24767508008DF5DD /* TrendingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45F6FD7D24767508008DF5DD /* TrendingCollectionViewCell.xib */; };
 		45F6FD8124769EDA008DF5DD /* loginsignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F6FD8024769EDA008DF5DD /* loginsignupVC.swift */; };
+		45F6FD832476AC63008DF5DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F6FD822476AC63008DF5DD /* LoginViewController.swift */; };
+		45F6FD852476AC7A008DF5DD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F6FD842476AC7A008DF5DD /* SignUpViewController.swift */; };
+		45F6FD872476B195008DF5DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45F6FD862476B195008DF5DD /* GoogleService-Info.plist */; };
 		5623732C727DF70B3656EBFB /* Pods_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61CE53C8499D3E1867E7796 /* Pods_Project.framework */; };
 		DE7957B6B3EA5E9EA8B7C8E9 /* Pods_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8706A58A754A903738507 /* Pods_ProjectTests.framework */; };
 /* End PBXBuildFile section */
@@ -123,6 +126,9 @@
 		45F6FD7C24767508008DF5DD /* TrendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewCell.swift; sourceTree = "<group>"; };
 		45F6FD7D24767508008DF5DD /* TrendingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingCollectionViewCell.xib; sourceTree = "<group>"; };
 		45F6FD8024769EDA008DF5DD /* loginsignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginsignupVC.swift; sourceTree = "<group>"; };
+		45F6FD822476AC63008DF5DD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		45F6FD842476AC7A008DF5DD /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		45F6FD862476B195008DF5DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55078A97C12FEA0F345CA980 /* Pods-Project-ProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-ProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-Project-ProjectUITests/Pods-Project-ProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A830F602EEF30FFFE7A9B940 /* Pods-ProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTests.release.xcconfig"; path = "Target Support Files/Pods-ProjectTests/Pods-ProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		B61CE53C8499D3E1867E7796 /* Pods_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,6 +222,7 @@
 				454D83B32424DDAF00490CE4 /* Employees */,
 				454D83862424D97000490CE4 /* Assets.xcassets */,
 				454D83882424D97000490CE4 /* LaunchScreen.storyboard */,
+				45F6FD862476B195008DF5DD /* GoogleService-Info.plist */,
 				454D838B2424D97000490CE4 /* Info.plist */,
 			);
 			path = Project;
@@ -317,6 +324,8 @@
 			isa = PBXGroup;
 			children = (
 				45F6FD8024769EDA008DF5DD /* loginsignupVC.swift */,
+				45F6FD822476AC63008DF5DD /* LoginViewController.swift */,
+				45F6FD842476AC7A008DF5DD /* SignUpViewController.swift */,
 			);
 			path = "Login and Signup";
 			sourceTree = "<group>";
@@ -477,6 +486,7 @@
 				454D838A2424D97000490CE4 /* LaunchScreen.storyboard in Resources */,
 				45506DF524334ED000510CDA /* countrypickerTableViewCell.xib in Resources */,
 				454D83872424D97000490CE4 /* Assets.xcassets in Resources */,
+				45F6FD872476B195008DF5DD /* GoogleService-Info.plist in Resources */,
 				45506DED24333F1500510CDA /* LanguageTableViewCell.xib in Resources */,
 				454D83852424D96F00490CE4 /* Main.storyboard in Resources */,
 				45506DF924334EEC00510CDA /* languagepickerTableViewCell.xib in Resources */,
@@ -645,6 +655,7 @@
 				45F6FD6B24753EF1008DF5DD /* TableViewController.swift in Sources */,
 				45B8413B246FF38F0038D146 /* themeVC.swift in Sources */,
 				454D83B72424F2FC00490CE4 /* MyCartVC.swift in Sources */,
+				45F6FD832476AC63008DF5DD /* LoginViewController.swift in Sources */,
 				459950122472BB6C0018B629 /* EmployeeTableViewCell.swift in Sources */,
 				45506E002433A10A00510CDA /* AccountTableViewCell.swift in Sources */,
 				45F6FD8124769EDA008DF5DD /* loginsignupVC.swift in Sources */,
@@ -659,6 +670,7 @@
 				45506DFC2433564F00510CDA /* CountryTableViewCell.swift in Sources */,
 				45506DEC24333F1500510CDA /* LanguageTableViewCell.swift in Sources */,
 				45F6FD7124754971008DF5DD /* EmployeeVC.swift in Sources */,
+				45F6FD852476AC7A008DF5DD /* SignUpViewController.swift in Sources */,
 				454D83AF2424DD7900490CE4 /* HomeVC.swift in Sources */,
 				454D837E2424D96F00490CE4 /* SceneDelegate.swift in Sources */,
 				45B84139246FF3740038D146 /* locationVC.swift in Sources */,

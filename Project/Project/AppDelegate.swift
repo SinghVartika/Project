@@ -9,10 +9,12 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import Firebase
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
 
     static var thm:String = "None"
 
@@ -21,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyDiVI4Yeqp1Z2AjKwwAly21ucKqDgPdCWs")
         GMSPlacesClient.provideAPIKey("AIzaSyDiVI4Yeqp1Z2AjKwwAly21ucKqDgPdCWs")
         let navigationBarAppearace = UINavigationBar.appearance()
+        FirebaseApp.configure()
         print(AppDelegate.thm)
         if (AppDelegate.thm == "Light")
         {
