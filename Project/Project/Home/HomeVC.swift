@@ -31,44 +31,19 @@ struct Data: Codable {
     var media_type: String?
 }
 
-class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
-    @IBOutlet weak var movieTableView : UITableView!
-    
-    var sections = ["Action","Drama","Science Fiction","Kids","Horror"]
-    
+    @IBOutlet weak var poster : UICollectionView!
     var responseModel: Trending?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
         
-        let nib = UINib.init(nibName: "CustomTableViewCell", bundle: nil)
-        movieTableView.register(nib, forCellReuseIdentifier: "TableCell")
+        let nib = UINib.init(nibName: "TrendingCollectionViewCell", bundle: nil)
+        poster.register(nib, forCellWithReuseIdentifier: "TrendingCell")
         
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! CustomTableViewCell
-        return cell
-    }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
-    
-    
     //API call
     func getData() {
         AF.request("https://api.themoviedb.org/3/trending/all/day?api_key=820016b7116f872f5f27bf56f9fdfb66", method: .get, parameters: nil, encoding: URLEncoding.default)
@@ -86,20 +61,36 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     } catch { print(error) }
                 }
                 
-                //                          self?.employeesTableView.reloadData()
+                self?.poster.reloadData()
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return responseModel?.results.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrendingCell", for: indexPath) as! TrendingCollectionViewCell
+        let temp = responseModel!.results[indexPath.row]
+        if let url = URL(string: "https://image.tmdb.org/t/p\(temp.poster_path)") {
+            
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let data = data {
+                    DispatchQueue.main.async {
+                        
+                        //here it pass the image to the cell.
+                        cell.mov_poster(img: UIImage(data: data)!)
+                        cell.move_img.contentMode = .scaleAspectFill
+                    }
+                }
+            }.resume()
+        }
+        
+        
+        return cell
+        
+    }
     
     
-    /*
-     MARK: - Navigation
-     
-     In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     Get the new view controller using segue.destination.
-     Pass the selected object to the new view controller.
-     }
-     */
     
 }

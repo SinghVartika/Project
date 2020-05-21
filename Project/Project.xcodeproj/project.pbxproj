@@ -42,10 +42,8 @@
 		45F6FD6E247541F1008DF5DD /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F6FD6C247541F1008DF5DD /* CardTableViewCell.swift */; };
 		45F6FD6F247541F1008DF5DD /* CardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45F6FD6D247541F1008DF5DD /* CardTableViewCell.xib */; };
 		45F6FD7124754971008DF5DD /* EmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F6FD7024754971008DF5DD /* EmployeeVC.swift */; };
-		45F6FD7624758E27008DF5DD /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F6FD7424758E27008DF5DD /* CustomTableViewCell.swift */; };
-		45F6FD7724758E27008DF5DD /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45F6FD7524758E27008DF5DD /* CustomTableViewCell.xib */; };
-		45F6FD7A24759366008DF5DD /* TrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F6FD7824759366008DF5DD /* TrendingCollectionViewCell.swift */; };
-		45F6FD7B24759366008DF5DD /* TrendingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45F6FD7924759366008DF5DD /* TrendingCollectionViewCell.xib */; };
+		45F6FD7E24767508008DF5DD /* TrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F6FD7C24767508008DF5DD /* TrendingCollectionViewCell.swift */; };
+		45F6FD7F24767508008DF5DD /* TrendingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45F6FD7D24767508008DF5DD /* TrendingCollectionViewCell.xib */; };
 		5623732C727DF70B3656EBFB /* Pods_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61CE53C8499D3E1867E7796 /* Pods_Project.framework */; };
 		DE7957B6B3EA5E9EA8B7C8E9 /* Pods_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8706A58A754A903738507 /* Pods_ProjectTests.framework */; };
 /* End PBXBuildFile section */
@@ -125,10 +123,8 @@
 		45F6FD6C247541F1008DF5DD /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		45F6FD6D247541F1008DF5DD /* CardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardTableViewCell.xib; sourceTree = "<group>"; };
 		45F6FD7024754971008DF5DD /* EmployeeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeVC.swift; sourceTree = SOURCE_ROOT; };
-		45F6FD7424758E27008DF5DD /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
-		45F6FD7524758E27008DF5DD /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
-		45F6FD7824759366008DF5DD /* TrendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewCell.swift; sourceTree = "<group>"; };
-		45F6FD7924759366008DF5DD /* TrendingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingCollectionViewCell.xib; sourceTree = "<group>"; };
+		45F6FD7C24767508008DF5DD /* TrendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewCell.swift; sourceTree = "<group>"; };
+		45F6FD7D24767508008DF5DD /* TrendingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingCollectionViewCell.xib; sourceTree = "<group>"; };
 		55078A97C12FEA0F345CA980 /* Pods-Project-ProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-ProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-Project-ProjectUITests/Pods-Project-ProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A830F602EEF30FFFE7A9B940 /* Pods-ProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTests.release.xcconfig"; path = "Target Support Files/Pods-ProjectTests/Pods-ProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		B61CE53C8499D3E1867E7796 /* Pods_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,10 +245,8 @@
 			isa = PBXGroup;
 			children = (
 				454D83AE2424DD7900490CE4 /* HomeVC.swift */,
-				45F6FD7424758E27008DF5DD /* CustomTableViewCell.swift */,
-				45F6FD7524758E27008DF5DD /* CustomTableViewCell.xib */,
-				45F6FD7824759366008DF5DD /* TrendingCollectionViewCell.swift */,
-				45F6FD7924759366008DF5DD /* TrendingCollectionViewCell.xib */,
+				45F6FD7C24767508008DF5DD /* TrendingCollectionViewCell.swift */,
+				45F6FD7D24767508008DF5DD /* TrendingCollectionViewCell.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -482,15 +476,14 @@
 				459950132472BB6C0018B629 /* EmployeeTableViewCell.xib in Resources */,
 				45506DFD2433564F00510CDA /* CountryTableViewCell.xib in Resources */,
 				45506E012433A10A00510CDA /* AccountTableViewCell.xib in Resources */,
+				45F6FD7F24767508008DF5DD /* TrendingCollectionViewCell.xib in Resources */,
 				454D838A2424D97000490CE4 /* LaunchScreen.storyboard in Resources */,
 				45506DF524334ED000510CDA /* countrypickerTableViewCell.xib in Resources */,
-				45F6FD7B24759366008DF5DD /* TrendingCollectionViewCell.xib in Resources */,
 				454D83872424D97000490CE4 /* Assets.xcassets in Resources */,
 				45506DED24333F1500510CDA /* LanguageTableViewCell.xib in Resources */,
 				454D83852424D96F00490CE4 /* Main.storyboard in Resources */,
 				45506DF924334EEC00510CDA /* languagepickerTableViewCell.xib in Resources */,
 				45F6FD6F247541F1008DF5DD /* CardTableViewCell.xib in Resources */,
-				45F6FD7724758E27008DF5DD /* CustomTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,15 +647,14 @@
 			files = (
 				45F6FD6B24753EF1008DF5DD /* TableViewController.swift in Sources */,
 				45B8413B246FF38F0038D146 /* themeVC.swift in Sources */,
-				45F6FD7A24759366008DF5DD /* TrendingCollectionViewCell.swift in Sources */,
 				454D83B72424F2FC00490CE4 /* MyCartVC.swift in Sources */,
 				45506E032433A71800510CDA /* joinViewController.swift in Sources */,
 				459950122472BB6C0018B629 /* EmployeeTableViewCell.swift in Sources */,
 				45506E002433A10A00510CDA /* AccountTableViewCell.swift in Sources */,
 				45F6FD6E247541F1008DF5DD /* CardTableViewCell.swift in Sources */,
-				45F6FD7624758E27008DF5DD /* CustomTableViewCell.swift in Sources */,
 				454D83C424252F1C00490CE4 /* AccountViewController.swift in Sources */,
 				45506DF424334ED000510CDA /* countrypickerTableViewCell.swift in Sources */,
+				45F6FD7E24767508008DF5DD /* TrendingCollectionViewCell.swift in Sources */,
 				4599502524753D6F0018B629 /* CardViewController.swift in Sources */,
 				45B84144246FF9E90038D146 /* style.swift in Sources */,
 				45506DF824334EEC00510CDA /* languagepickerTableViewCell.swift in Sources */,

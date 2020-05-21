@@ -9,28 +9,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TrendingCollectionCell" id="gTV-IL-0wX" customClass="TrendingCollectionViewCell" customModule="Project" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TrendingCell" id="gTV-IL-0wX" customClass="TrendingCollectionViewCell" customModule="Project" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJM-cY-Y1n">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
-                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7lk-4k-W9h">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="xJM-cY-Y1n" secondAttribute="trailing" id="LnL-c8-Gb0"/>
-                <constraint firstAttribute="bottom" secondItem="xJM-cY-Y1n" secondAttribute="bottom" id="sQA-S6-2cv"/>
-                <constraint firstItem="xJM-cY-Y1n" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vgE-zh-bVh"/>
-                <constraint firstItem="xJM-cY-Y1n" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="wxr-in-O3c"/>
+                <constraint firstAttribute="bottom" secondItem="7lk-4k-W9h" secondAttribute="bottom" id="6LG-dV-Qdi"/>
+                <constraint firstItem="7lk-4k-W9h" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6o1-tZ-LxA"/>
+                <constraint firstItem="7lk-4k-W9h" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Rp0-ph-TxG"/>
+                <constraint firstAttribute="trailing" secondItem="7lk-4k-W9h" secondAttribute="trailing" id="wRt-CI-70h"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="200" height="200"/>
-            <point key="canvasLocation" x="111.59420289855073" y="81.696428571428569"/>
+            <size key="customSize" width="300" height="300"/>
+            <connections>
+                <outlet property="move_img" destination="7lk-4k-W9h" id="FGz-Nu-txH"/>
+            </connections>
+            <point key="canvasLocation" x="317.39130434782612" y="160.71428571428569"/>
         </collectionViewCell>
     </objects>
 </document>
