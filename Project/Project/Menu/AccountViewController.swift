@@ -112,13 +112,13 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
     
     @IBAction func signin(_ sender : UIButton){
        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-     let vc = storyboard.instantiateViewController(withIdentifier: "signInViewController")
+     let vc = storyboard.instantiateViewController(withIdentifier: "loginsignupVC")
     self.navigationController!.pushViewController(vc, animated: true)
     }
     
     @IBAction func join(_ sender : UIButton){
        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-     let vc = storyboard.instantiateViewController(withIdentifier: "joinViewController")
+     let vc = storyboard.instantiateViewController(withIdentifier: "loginsignupVC")
     self.navigationController!.pushViewController(vc, animated: true)
     }
 
