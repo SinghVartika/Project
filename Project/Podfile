@@ -10,6 +10,8 @@ target 'Project' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
+  pod 'AlamofireImage'
+
   # Pods for Project
 
   target 'ProjectTests' do

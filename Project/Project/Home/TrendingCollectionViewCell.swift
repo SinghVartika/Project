@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AlamofireImage
+import Alamofire
 
 class TrendingCollectionViewCell: UICollectionViewCell {
     
@@ -16,10 +18,15 @@ class TrendingCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    func mov_poster(img : UIImage)
+    
+    
+    func poster_mov(img :UIImage)
     {
-        move_img.image = img
+        self.move_img.image = img
+        self.move_img.contentMode = .scaleAspectFit
+        self.move_img.contentMode = .scaleAspectFill
     }
     
 
 }
+

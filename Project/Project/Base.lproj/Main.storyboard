@@ -17,39 +17,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iEr-Wj-6Jd">
-                                <rect key="frame" x="0.0" y="88" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="350"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="cQP-je-GQI"/>
+                                    <constraint firstAttribute="height" constant="350" id="aYo-cv-DID"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nv3-8G-GXm">
-                                    <size key="itemSize" width="50" height="50"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nv3-8G-GXm">
+                                    <size key="itemSize" width="350" height="325"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7Nt-dc-BSM">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="12.5" width="350" height="325"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="MCF-IK-Lsp">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="325"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="NJl-Em-AWT">
+                                <rect key="frame" x="0.0" y="446" width="414" height="37"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </pageControl>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="NJl-Em-AWT" firstAttribute="top" secondItem="iEr-Wj-6Jd" secondAttribute="bottom" constant="8" symbolic="YES" id="2CB-pC-dfT"/>
+                            <constraint firstItem="NJl-Em-AWT" firstAttribute="trailing" secondItem="PQr-Ze-W5v" secondAttribute="trailing" id="2bm-xf-PWj"/>
                             <constraint firstItem="iEr-Wj-6Jd" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="Em5-7y-bH6"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="iEr-Wj-6Jd" secondAttribute="trailing" id="WMI-Gx-PiB"/>
                             <constraint firstItem="iEr-Wj-6Jd" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="XCA-zL-RZi"/>
+                            <constraint firstItem="NJl-Em-AWT" firstAttribute="top" secondItem="iEr-Wj-6Jd" secondAttribute="bottom" constant="8" symbolic="YES" id="aay-C9-dyZ"/>
+                            <constraint firstItem="NJl-Em-AWT" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="zVO-L9-yFr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <navigationItem key="navigationItem" id="LRf-D9-U4g"/>
                     <connections>
+                        <outlet property="pagecontrols" destination="NJl-Em-AWT" id="wCA-IJ-2M5"/>
                         <outlet property="poster" destination="iEr-Wj-6Jd" id="zmm-5Y-VHb"/>
                     </connections>
                 </viewController>
@@ -600,7 +610,7 @@
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" id="IKW-Kn-10X" customClass="LoginViewController" customModule="Project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rLc-dW-NP5">
-                        <rect key="frame" x="0.0" y="0.0" width="294" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="294" height="350"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please login to access your account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-Jv-2Ie">

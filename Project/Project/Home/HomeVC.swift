@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AlamofireImage
 
 struct Trending: Codable{
     let page: Int?
@@ -31,14 +32,18 @@ struct Data: Codable {
     var media_type: String?
 }
 
-class HomeVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+class HomeVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var poster : UICollectionView!
+    @IBOutlet weak var pagecontrols: UIPageControl!
     var responseModel: Trending?
-    
+    var x = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
+        poster.dataSource = self
+        poster.delegate = self
+        self.setTimer()
         
         let nib = UINib.init(nibName: "TrendingCollectionViewCell", bundle: nil)
         poster.register(nib, forCellWithReuseIdentifier: "TrendingCell")
@@ -64,33 +69,59 @@ class HomeVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSour
                 self?.poster.reloadData()
         }
     }
-    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return responseModel?.results.count ?? 0
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 300, height: 300)
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrendingCell", for: indexPath) as! TrendingCollectionViewCell
-        let temp = responseModel!.results[indexPath.row]
-        if let url = URL(string: "https://image.tmdb.org/t/p\(temp.poster_path)") {
-            
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if let data = data {
-                    DispatchQueue.main.async {
-                        
-                        //here it pass the image to the cell.
-                        cell.mov_poster(img: UIImage(data: data)!)
-                        cell.move_img.contentMode = .scaleAspectFill
-                    }
+        
+//        cell.mov_poster(path: responseModel!.results[indexPath.row].poster_path!)
+        
+                
+        
+        if let url = URL(string: "https://image.tmdb.org/t/p/w500\(responseModel!.results[indexPath.row].poster_path!)") {
+        
+                    URLSession.shared.dataTask(with: url) { (data, response, error) in
+                        if let data = data {
+                            DispatchQueue.main.async {
+        
+                                //here it pass the image to the cell.
+                                cell.poster_mov(img: UIImage(data: data)!)
+                                //cell.move_img.contentMode = .scaleAspectFit
+                            }
+                        }
+                    }.resume()
                 }
-            }.resume()
-        }
         
         
         return cell
         
     }
     
-    
-    
+    func setTimer() {
+          let _ = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(HomeVC.autoScroll), userInfo: nil,
+    repeats: true)
+      }
+    @objc func autoScroll() {
+        pagecontrols.numberOfPages = responseModel?.results.count ?? 0
+        self.pagecontrols.currentPage = x
+        if self.x < responseModel?.results.count ?? 0 {
+            let indexPath = IndexPath(item: x, section: 0)
+            self.poster.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            self.x = self.x + 1
+        } else {
+            self.x = 0
+            self.poster.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: true)
+        }
+    }
 }
