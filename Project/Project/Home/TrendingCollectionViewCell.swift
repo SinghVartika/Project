@@ -20,9 +20,9 @@ class TrendingCollectionViewCell: UICollectionViewCell {
     }
     
     
-    func poster_mov(img :UIImage)
+    func poster_mov(img :NSURL)
     {
-        self.move_img.image = img
+        self.move_img.af_setImage(withURL: img as URL)
         self.move_img.contentMode = .scaleAspectFit
         self.move_img.contentMode = .scaleAspectFill
     }

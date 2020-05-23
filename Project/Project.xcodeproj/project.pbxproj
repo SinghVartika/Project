@@ -50,6 +50,8 @@
 		45F6FD8B2477DC64008DF5DD /* MoviedescVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F6FD8A2477DC64008DF5DD /* MoviedescVC.swift */; };
 		45F6FD8E247824BB008DF5DD /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F6FD8C247824BB008DF5DD /* MovieTableViewCell.swift */; };
 		45F6FD8F247824BB008DF5DD /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45F6FD8D247824BB008DF5DD /* MovieTableViewCell.xib */; };
+		45F6FD9624793DEF008DF5DD /* OtherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F6FD9424793DEF008DF5DD /* OtherCollectionViewCell.swift */; };
+		45F6FD9724793DEF008DF5DD /* OtherCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45F6FD9524793DEF008DF5DD /* OtherCollectionViewCell.xib */; };
 		5623732C727DF70B3656EBFB /* Pods_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B61CE53C8499D3E1867E7796 /* Pods_Project.framework */; };
 		DE7957B6B3EA5E9EA8B7C8E9 /* Pods_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB8706A58A754A903738507 /* Pods_ProjectTests.framework */; };
 /* End PBXBuildFile section */
@@ -137,6 +139,8 @@
 		45F6FD8A2477DC64008DF5DD /* MoviedescVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviedescVC.swift; sourceTree = "<group>"; };
 		45F6FD8C247824BB008DF5DD /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		45F6FD8D247824BB008DF5DD /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
+		45F6FD9424793DEF008DF5DD /* OtherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCollectionViewCell.swift; sourceTree = "<group>"; };
+		45F6FD9524793DEF008DF5DD /* OtherCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OtherCollectionViewCell.xib; sourceTree = "<group>"; };
 		55078A97C12FEA0F345CA980 /* Pods-Project-ProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-ProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-Project-ProjectUITests/Pods-Project-ProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A830F602EEF30FFFE7A9B940 /* Pods-ProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTests.release.xcconfig"; path = "Target Support Files/Pods-ProjectTests/Pods-ProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		B61CE53C8499D3E1867E7796 /* Pods_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,6 +264,8 @@
 				454D83AE2424DD7900490CE4 /* HomeVC.swift */,
 				45F6FD8C247824BB008DF5DD /* MovieTableViewCell.swift */,
 				45F6FD8D247824BB008DF5DD /* MovieTableViewCell.xib */,
+				45F6FD9424793DEF008DF5DD /* OtherCollectionViewCell.swift */,
+				45F6FD9524793DEF008DF5DD /* OtherCollectionViewCell.xib */,
 				45F6FD7C24767508008DF5DD /* TrendingCollectionViewCell.swift */,
 				45F6FD7D24767508008DF5DD /* TrendingCollectionViewCell.xib */,
 				45F6FD8A2477DC64008DF5DD /* MoviedescVC.swift */,
@@ -504,6 +510,7 @@
 				454D83852424D96F00490CE4 /* Main.storyboard in Resources */,
 				45506DF924334EEC00510CDA /* languagepickerTableViewCell.xib in Resources */,
 				45F6FD6F247541F1008DF5DD /* CardTableViewCell.xib in Resources */,
+				45F6FD9724793DEF008DF5DD /* OtherCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,6 +678,7 @@
 				45B8413B246FF38F0038D146 /* themeVC.swift in Sources */,
 				454D83B72424F2FC00490CE4 /* MyCartVC.swift in Sources */,
 				45F6FD832476AC63008DF5DD /* LoginViewController.swift in Sources */,
+				45F6FD9624793DEF008DF5DD /* OtherCollectionViewCell.swift in Sources */,
 				459950122472BB6C0018B629 /* EmployeeTableViewCell.swift in Sources */,
 				45506E002433A10A00510CDA /* AccountTableViewCell.swift in Sources */,
 				45F6FD8124769EDA008DF5DD /* loginsignupVC.swift in Sources */,

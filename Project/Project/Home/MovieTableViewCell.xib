@@ -9,16 +9,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="200" id="KGk-i7-Jjw" customClass="MovieTableViewCell" customModule="Project" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="268" id="KGk-i7-Jjw" customClass="MovieTableViewCell" customModule="Project" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="268"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="268"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="j0N-IV-NfE">
-                        <rect key="frame" x="20" y="25" width="280" height="150"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <rect key="frame" x="20" y="25" width="280" height="218"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="941-tg-JnN">
                             <size key="itemSize" width="125" height="150"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -26,17 +26,30 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
+                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="m8Q-jz-260">
+                        <rect key="frame" x="26" y="238" width="268" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="lXB-Iw-Hdu"/>
+                        </constraints>
+                    </pageControl>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="j0N-IV-NfE" secondAttribute="bottom" constant="25" id="9B5-Kq-9tL"/>
+                    <constraint firstItem="m8Q-jz-260" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="Iiu-uc-sM4"/>
                     <constraint firstItem="j0N-IV-NfE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="RWn-6F-H08"/>
                     <constraint firstItem="j0N-IV-NfE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="TIp-Ir-WUe"/>
-                    <constraint firstAttribute="bottom" secondItem="j0N-IV-NfE" secondAttribute="bottom" constant="25" id="eGr-hA-voN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="m8Q-jz-260" secondAttribute="trailing" constant="10" id="asy-F6-Rt3"/>
                     <constraint firstAttribute="trailing" secondItem="j0N-IV-NfE" secondAttribute="trailing" constant="20" symbolic="YES" id="o51-oG-h1j"/>
+                    <constraint firstItem="m8Q-jz-260" firstAttribute="top" secondItem="j0N-IV-NfE" secondAttribute="bottom" constant="-5" id="p2h-fB-NnF"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="137.68115942028987" y="100.44642857142857"/>
+            <connections>
+                <outlet property="pagecontrols" destination="m8Q-jz-260" id="JCq-eI-W9J"/>
+                <outlet property="poster" destination="j0N-IV-NfE" id="z4e-LH-dhk"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="123.21428571428571"/>
         </tableViewCell>
     </objects>
 </document>
