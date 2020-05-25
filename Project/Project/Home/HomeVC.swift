@@ -14,8 +14,8 @@ import AlamofireImage
 class HomeVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var movSection: UITableView!
-    static var sect : Int?
-    var sections = [ "" , "Action","Drama","Science Fiction","Kids","Horror"]
+    static var sect : Int? = 0
+    var sections = [ "" , "Best Movies","Popular","Science Fiction","Kids","Age Restricted"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +36,17 @@ class HomeVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieTableViewCell
-        if(indexPath.section == 0)
-         {
-            HomeVC.sect = 0
-         }
+        switch  indexPath.section
+        {
+        case 0:
+            cell.section = 0
+        case 1:
+            cell.section = 1
+        case 2:
+            cell.section = 2
+        default:
+            cell.section = 3
+        }
 
         return cell
     }
@@ -66,4 +73,11 @@ class HomeVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
         }
            
        }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let cell = cell as? MovieTableViewCell
+        {
+            cell.poster.tag = indexPath.section
+            cell.poster.reloadData()
+        }
+    }
 }

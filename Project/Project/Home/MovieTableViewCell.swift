@@ -66,21 +66,33 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     
     var img = UIImage(named: "imdb")
     var responseModel: Trending?
-    var bestDrama: movie?
+    var popular: movie?
+    var bestMovie: movie?
+    var scifi: movie?
+    var kid: movie?
+    var adult: movie?
     var x = 1
     static var desc : Data?
+    var section = -1
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        getDataBestDrama()
-        getDataTrending()
+        
         
         poster.dataSource = self
         poster.delegate = self
         
-        self.setTimer()
+        getDataMovie2014()
+        getDataPopular()
+        getDataTrending()
+        getDataSciFi()
+        getDataAdult()
         
+        if(section == 0)
+        {
+            self.setTimer()
+        }
         let nib = UINib.init(nibName: "TrendingCollectionViewCell", bundle: nil)
         poster.register(nib, forCellWithReuseIdentifier: "TrendingCell")
         
@@ -91,6 +103,9 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     
     //API call for trending section
     func getDataTrending() {
+        
+        URLCache.shared.removeAllCachedResponses()
+        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
         AF.request("https://api.themoviedb.org/3/trending/all/day?api_key=820016b7116f872f5f27bf56f9fdfb66", method: .get, parameters: nil, encoding: URLEncoding.default)
             .responseData { [weak self] response in
                 switch response.result {
@@ -110,9 +125,12 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
         }
     }
     
-    //API call for Best Drama section
-    func getDataBestDrama() {
-        AF.request("https://api.themoviedb.org/3/discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10&api_key=820016b7116f872f5f27bf56f9fdfb66", method: .get, parameters: nil, encoding: URLEncoding.default)
+    //API call for Best movie section
+    func getDataMovie2014() {
+        
+        URLCache.shared.removeAllCachedResponses()
+        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+        AF.request("https://api.themoviedb.org/3/discover/movie?with_genres=18&primary_release_year=2014&api_key=820016b7116f872f5f27bf56f9fdfb66", method: .get, parameters: nil, encoding: URLEncoding.default)
             .responseData { [weak self] response in
                 switch response.result {
                 case .failure(let error):
@@ -122,7 +140,103 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
                         let decoder = JSONDecoder()
                         decoder.keyDecodingStrategy = .useDefaultKeys
                         let result = try decoder.decode(movie.self, from: data)
-                        self?.bestDrama = result
+                        self?.bestMovie = result
+                        print(result)
+                    } catch { print(error) }
+                }
+                
+                self?.poster.reloadData()
+        }
+    }
+    
+    //API call for popular movies
+    func getDataPopular() {
+        
+        URLCache.shared.removeAllCachedResponses()
+        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+        AF.request("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=820016b7116f872f5f27bf56f9fdfb66", method: .get, parameters: nil, encoding: URLEncoding.default)
+            .responseData { [weak self] response in
+                switch response.result {
+                case .failure(let error):
+                    print(error)
+                case .success(let data):
+                    do {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .useDefaultKeys
+                        let result = try decoder.decode(movie.self, from: data)
+                        self?.popular = result
+                        print(result)
+                    } catch { print(error) }
+                }
+                
+                self?.poster.reloadData()
+        }
+    }
+    
+    //API call for Science Fiction
+    func getDataSciFi() {
+        
+        URLCache.shared.removeAllCachedResponses()
+        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+        AF.request("https://api.themoviedb.org/3/discover/movie?with_genres=878&sort_by=vote_average.desc&&api_key=820016b7116f872f5f27bf56f9fdfb66", method: .get, parameters: nil, encoding: URLEncoding.default)
+            .responseData { [weak self] response in
+                switch response.result {
+                case .failure(let error):
+                    print(error)
+                case .success(let data):
+                    do {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .useDefaultKeys
+                        let result = try decoder.decode(movie.self, from: data)
+                        self?.scifi = result
+                        print(result)
+                    } catch { print(error) }
+                }
+                
+                self?.poster.reloadData()
+        }
+    }
+    
+    //API call for Kids Movies
+    func getDataKids() {
+        
+        URLCache.shared.removeAllCachedResponses()
+        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+        AF.request("https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&&api_key=820016b7116f872f5f27bf56f9fdfb66", method: .get, parameters: nil, encoding: URLEncoding.default)
+            .responseData { [weak self] response in
+                switch response.result {
+                case .failure(let error):
+                    print(error)
+                case .success(let data):
+                    do {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .useDefaultKeys
+                        let result = try decoder.decode(movie.self, from: data)
+                        self?.kid = result
+                        print(result)
+                    } catch { print(error) }
+                }
+                
+                self?.poster.reloadData()
+        }
+    }
+    
+    //API call for Age Restricted Movies
+    func getDataAdult() {
+        
+        URLCache.shared.removeAllCachedResponses()
+        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+        AF.request("https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&&api_key=820016b7116f872f5f27bf56f9fdfb66", method: .get, parameters: nil, encoding: URLEncoding.default)
+            .responseData { [weak self] response in
+                switch response.result {
+                case .failure(let error):
+                    print(error)
+                case .success(let data):
+                    do {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .useDefaultKeys
+                        let result = try decoder.decode(movie.self, from: data)
+                        self?.adult = result
                         print(result)
                     } catch { print(error) }
                 }
@@ -147,7 +261,14 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 300, height: 300)
+        if (section == 0)
+        {
+            return CGSize(width: 300, height: 300)
+        }
+        else
+        {
+            return CGSize(width: 150, height: 250)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -160,36 +281,113 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var str : String
-        
-        switch(indexPath.row)
+        if (collectionView.tag != 0)
         {
-        case 0:
+            pagecontrols.isHidden = true
+        }
+        if collectionView.tag == 0
+        {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrendingCell", for: indexPath) as! TrendingCollectionViewCell
             str = "https://image.tmdb.org/t/p/w500\(responseModel!.results[indexPath.row].poster_path!)"
             let URL = NSURL(string: str)!
             cell.poster_mov(img: URL)
             return cell
-        default:
+        }
+        else if collectionView.tag == 1
+        {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCell", for: indexPath) as! OtherCollectionViewCell
-            //            if(bestDrama!.results[indexPath.row].poster_path != nil)
-            //            {
-            //            str = "https://image.tmdb.org/t/p/w500\(bestDrama!.results[indexPath.row].poster_path!)"
-            //            let URL = NSURL(string: str)!
-            //            cell.poster_mov(img: URL)
-            //            }
-            //            else
-            //            {
-            //                cell.mov_image.image = img
-            //            }
             
-//            cell.title(ttl: bestDrama!.results[indexPath.row].title!)
-//            
-//            
-//            cell.movRating(rtn: String(describing: bestDrama!.results[indexPath.row].popularity!))
+            str = "https://image.tmdb.org/t/p/w500\(bestMovie!.results[indexPath.row].poster_path!)"
+            let URL = NSURL(string: str)!
+            cell.mov_image.af_setImage(withURL: URL as URL)
+            cell.mov_image.contentMode = .scaleAspectFill
+            
+            //cell.poster_mov(img: URL)
+            
+            
+            cell.title(ttl: bestMovie!.results[indexPath.row].title!)
+            cell.movType(typ: "Adventure")
+            
+            cell.movRating(rtn: String(describing: bestMovie!.results[indexPath.row].vote_average!))
             return cell
-            //        movImage.af_setImage(withURL: URL as URL)
+        }
+            
+        else if collectionView.tag == 2
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCell", for: indexPath) as! OtherCollectionViewCell
+            
+            str = "https://image.tmdb.org/t/p/w500\(popular!.results[indexPath.row].poster_path!)"
+            let URL = NSURL(string: str)!
+            cell.mov_image.af_setImage(withURL: URL as URL)
+            cell.mov_image.contentMode = .scaleAspectFill
+            
+            //cell.poster_mov(img: URL)
+            
+            
+            cell.title(ttl: popular!.results[indexPath.row].title!)
+            cell.movType(typ: "Adventure")
+            
+            cell.movRating(rtn: String(describing: popular!.results[indexPath.row].vote_average!))
+            return cell
+        }
+        else if collectionView.tag == 3
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCell", for: indexPath) as! OtherCollectionViewCell
+            
+            str = "https://image.tmdb.org/t/p/w500\(scifi!.results[indexPath.row].poster_path!)"
+            let URL = NSURL(string: str)!
+            cell.mov_image.af_setImage(withURL: URL as URL)
+            cell.mov_image.contentMode = .scaleAspectFill
+            
+            //cell.poster_mov(img: URL)
+            
+            
+            cell.title(ttl: scifi!.results[indexPath.row].title!)
+            cell.movType(typ: "Science Fiction")
+            
+            cell.movRating(rtn: String(describing: scifi!.results[indexPath.row].vote_average!))
+            return cell
+        }
+        
+        else if collectionView.tag == 4
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCell", for: indexPath) as! OtherCollectionViewCell
+            
+            str = "https://image.tmdb.org/t/p/w500\(kid!.results[indexPath.row].poster_path!)"
+            let URL = NSURL(string: str)!
+            cell.mov_image.af_setImage(withURL: URL as URL)
+            cell.mov_image.contentMode = .scaleAspectFill
+            
+            //cell.poster_mov(img: URL)
+            
+            
+            cell.title(ttl: kid!.results[indexPath.row].title!)
+            cell.movType(typ: "Kids")
+            
+            cell.movRating(rtn: String(describing: kid!.results[indexPath.row].vote_average!))
+            return cell
+        }
+        else
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCell", for: indexPath) as! OtherCollectionViewCell
+            
+            str = "https://image.tmdb.org/t/p/w500\(adult!.results[indexPath.row].poster_path!)"
+            let URL = NSURL(string: str)!
+            cell.mov_image.af_setImage(withURL: URL as URL)
+            cell.mov_image.contentMode = .scaleAspectFill
+            
+            //cell.poster_mov(img: URL)
+            
+            
+            cell.title(ttl: adult!.results[indexPath.row].title!)
+            cell.movType(typ: "R-Rated")
+            
+            cell.movRating(rtn: String(describing: adult!.results[indexPath.row].vote_average!))
+            return cell
         }
     }
+    
+    
     
     //Timer for the controller
     func setTimer() {

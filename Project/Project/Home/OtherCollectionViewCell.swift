@@ -21,7 +21,7 @@ class OtherCollectionViewCell: UICollectionViewCell {
     }
     func poster_mov(img :NSURL)
     {
-        self.mov_image.af_setImage(withURL: img as URL)
+        //self.mov_image.af_setImage(withURL: img as URL)
         self.mov_image.contentMode = .scaleAspectFit
         self.mov_image.contentMode = .scaleAspectFill
     }
