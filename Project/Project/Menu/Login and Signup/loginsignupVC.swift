@@ -9,10 +9,18 @@
 import UIKit
 import Firebase
 
+protocol login {
+    func loginUSer(Email: String, Password: String, view: UIViewController)
+    func logoutUser(view: UIViewController)
+    func signupUser(Email: String, Password: String, rePassword: String, view: UIViewController)
+}
+
 class loginsignupVC: UIViewController {
     
     @IBOutlet weak var login: UIView!
     @IBOutlet weak var signin: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         signin.isHidden = false
@@ -33,32 +41,10 @@ class loginsignupVC: UIViewController {
     
     @IBAction func logOutAction(_ sender: Any) {
         
-        
-        //No user exist but trying to sign out
-        if Auth.auth().currentUser == nil {
-            
-            let alertController = UIAlertController(title: "Sign In first", message: "No user exist kindly sign in first", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            
-            alertController.addAction(defaultAction)
-            self.present(alertController, animated: true, completion: nil)
-        }
-        do {
-            //Try signing out
-            try Auth.auth().signOut()
-            //            let alertController = UIAlertController(title: "Logged Out", message: "Successfully Logged Out", preferredStyle: .alert)
-            //            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            //            alertController.addAction(defaultAction)
-            //            self.present(alertController, animated: true, completion: nil)
-        }
-        catch let signOutError as NSError {
-            //Catch error if any while signin out
-            print ("Error signing out: %@", signOutError)
-        }
-        
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "AccountViewController")
         self.navigationController!.pushViewController(vc, animated: true)
+        
     }
 }
 

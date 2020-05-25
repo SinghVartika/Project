@@ -57,12 +57,15 @@ struct details: Codable
     var adult: Bool?
     var poster_path: String?
     var id: Int?
+    var overview: String?
 }
 
 class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var poster : UICollectionView!
     @IBOutlet weak var pagecontrols: UIPageControl!
+    
+    var view: UIViewController?
     
     var img = UIImage(named: "imdb")
     var responseModel: Trending?
@@ -73,6 +76,8 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     var adult: movie?
     var x = 1
     static var desc : Data?
+    static var mov : details?
+    static var type = -1
     var section = -1
     
     override func awakeFromNib() {
@@ -86,13 +91,11 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
         getDataMovie2014()
         getDataPopular()
         getDataTrending()
+        getDataKids()
         getDataSciFi()
         getDataAdult()
         
-        if(section == 0)
-        {
-            self.setTimer()
-        }
+        
         let nib = UINib.init(nibName: "TrendingCollectionViewCell", bundle: nil)
         poster.register(nib, forCellWithReuseIdentifier: "TrendingCell")
         
@@ -226,7 +229,7 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
         
         URLCache.shared.removeAllCachedResponses()
         URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
-        AF.request("https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&&api_key=820016b7116f872f5f27bf56f9fdfb66", method: .get, parameters: nil, encoding: URLEncoding.default)
+        AF.request("http://api.themoviedb.org/3/discover/movie?certification_country=US&certification=R&sort_by=vote_average.desc&&api_key=820016b7116f872f5f27bf56f9fdfb66", method: .get, parameters: nil, encoding: URLEncoding.default)
             .responseData { [weak self] response in
                 switch response.result {
                 case .failure(let error):
@@ -272,12 +275,33 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        MovieTableViewCell.desc = responseModel!.results[indexPath.row]
+        switch collectionView.tag
+        {
+        case 0:
+            MovieTableViewCell.type = 0
+            MovieTableViewCell.desc = responseModel!.results[indexPath.row]
+        case 1:
+            MovieTableViewCell.type = 1
+            MovieTableViewCell.mov = bestMovie!.results[indexPath.row]
+        case 2:
+            MovieTableViewCell.type = 1
+            MovieTableViewCell.mov = popular!.results[indexPath.row]
+        case  3:
+            MovieTableViewCell.type = 1
+            MovieTableViewCell.mov = scifi!.results[indexPath.row]
+        case 4:
+            MovieTableViewCell.type = 1
+            MovieTableViewCell.mov = kid!.results[indexPath.row]
+        default:
+            MovieTableViewCell.type = 1
+            MovieTableViewCell.mov = adult!.results[indexPath.row]
+        }
+        
         //print (HomeVC.desc!)
         
-        //        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        //        let vc = storyboard.instantiateViewController(withIdentifier: "MoviedescVC")
-        //        self.navigationController!.pushViewController(vc, animated: true)
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MoviedescVC")
+        view?.navigationController!.pushViewController(vc, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var str : String
@@ -288,7 +312,7 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
         if collectionView.tag == 0
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrendingCell", for: indexPath) as! TrendingCollectionViewCell
-            str = "https://image.tmdb.org/t/p/w500\(responseModel!.results[indexPath.row].poster_path!)"
+            str = "https://image.tmdb.org/t/p/w500\(responseModel?.results[indexPath.row].poster_path ?? "")"
             let URL = NSURL(string: str)!
             cell.poster_mov(img: URL)
             return cell
@@ -297,18 +321,15 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCell", for: indexPath) as! OtherCollectionViewCell
             
-            str = "https://image.tmdb.org/t/p/w500\(bestMovie!.results[indexPath.row].poster_path!)"
+            str = "https://image.tmdb.org/t/p/w500\(bestMovie?.results[indexPath.row].poster_path ?? "" )"
             let URL = NSURL(string: str)!
             cell.mov_image.af_setImage(withURL: URL as URL)
             cell.mov_image.contentMode = .scaleAspectFill
             
-            //cell.poster_mov(img: URL)
-            
-            
-            cell.title(ttl: bestMovie!.results[indexPath.row].title!)
+            cell.title(ttl: bestMovie?.results[indexPath.row].title ?? "")
             cell.movType(typ: "Adventure")
             
-            cell.movRating(rtn: String(describing: bestMovie!.results[indexPath.row].vote_average!))
+            cell.movRating(rtn: String(describing: bestMovie?.results[indexPath.row].vote_average ?? 0))
             return cell
         }
             
@@ -316,73 +337,61 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCell", for: indexPath) as! OtherCollectionViewCell
             
-            str = "https://image.tmdb.org/t/p/w500\(popular!.results[indexPath.row].poster_path!)"
+            str = "https://image.tmdb.org/t/p/w500\(popular?.results[indexPath.row].poster_path ?? "")"
             let URL = NSURL(string: str)!
             cell.mov_image.af_setImage(withURL: URL as URL)
             cell.mov_image.contentMode = .scaleAspectFill
             
-            //cell.poster_mov(img: URL)
-            
-            
-            cell.title(ttl: popular!.results[indexPath.row].title!)
+            cell.title(ttl: popular?.results[indexPath.row].title ?? "")
             cell.movType(typ: "Adventure")
             
-            cell.movRating(rtn: String(describing: popular!.results[indexPath.row].vote_average!))
+            cell.movRating(rtn: String(describing: popular?.results[indexPath.row].vote_average ?? 0))
             return cell
         }
         else if collectionView.tag == 3
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCell", for: indexPath) as! OtherCollectionViewCell
             
-            str = "https://image.tmdb.org/t/p/w500\(scifi!.results[indexPath.row].poster_path!)"
+            str = "https://image.tmdb.org/t/p/w500\(scifi?.results[indexPath.row].poster_path ?? "" )"
             let URL = NSURL(string: str)!
             cell.mov_image.af_setImage(withURL: URL as URL)
             cell.mov_image.contentMode = .scaleAspectFill
             
-            //cell.poster_mov(img: URL)
-            
-            
-            cell.title(ttl: scifi!.results[indexPath.row].title!)
+            cell.title(ttl: scifi?.results[indexPath.row].title ?? "")
             cell.movType(typ: "Science Fiction")
             
-            cell.movRating(rtn: String(describing: scifi!.results[indexPath.row].vote_average!))
+            cell.movRating(rtn: String(describing: scifi?.results[indexPath.row].vote_average ?? 0))
             return cell
         }
-        
+            
         else if collectionView.tag == 4
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCell", for: indexPath) as! OtherCollectionViewCell
             
-            str = "https://image.tmdb.org/t/p/w500\(kid!.results[indexPath.row].poster_path!)"
+            str = "https://image.tmdb.org/t/p/w500\(kid?.results[indexPath.row].poster_path ?? "" )"
             let URL = NSURL(string: str)!
             cell.mov_image.af_setImage(withURL: URL as URL)
             cell.mov_image.contentMode = .scaleAspectFill
             
-            //cell.poster_mov(img: URL)
-            
-            
-            cell.title(ttl: kid!.results[indexPath.row].title!)
+            cell.title(ttl: kid?.results[indexPath.row].title ?? "")
             cell.movType(typ: "Kids")
             
-            cell.movRating(rtn: String(describing: kid!.results[indexPath.row].vote_average!))
+            cell.movRating(rtn: String(describing: kid?.results[indexPath.row].vote_average ?? 0))
             return cell
         }
         else
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCell", for: indexPath) as! OtherCollectionViewCell
             
-            str = "https://image.tmdb.org/t/p/w500\(adult!.results[indexPath.row].poster_path!)"
+            str = "https://image.tmdb.org/t/p/w500\(adult?.results[indexPath.row].poster_path ?? "")"
             let URL = NSURL(string: str)!
             cell.mov_image.af_setImage(withURL: URL as URL)
             cell.mov_image.contentMode = .scaleAspectFill
             
-            //cell.poster_mov(img: URL)
-            
-            
-            cell.title(ttl: adult!.results[indexPath.row].title!)
+            cell.title(ttl: adult?.results[indexPath.row].title ?? "")
             cell.movType(typ: "R-Rated")
             
-            cell.movRating(rtn: String(describing: adult!.results[indexPath.row].vote_average!))
+            cell.movRating(rtn: String(describing: adult?.results[indexPath.row].vote_average ?? 0))
             return cell
         }
     }
@@ -391,7 +400,7 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     
     //Timer for the controller
     func setTimer() {
-        let _ = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(MovieTableViewCell.autoScroll), userInfo: nil,
+        let _ = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(MovieTableViewCell.autoScroll), userInfo: nil,
                                      repeats: true)
     }
     

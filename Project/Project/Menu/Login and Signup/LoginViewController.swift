@@ -9,7 +9,10 @@
 import UIKit
 import Firebase
 
+
 class LoginViewController: UIViewController {
+    
+    
     
     @IBOutlet weak var email : UITextField!
     @IBOutlet weak var password : UITextField!
@@ -22,34 +25,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginAction(_ sender: Any) {
         
-        Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (user, error) in
-            
-            //If no error occurs then complete the login process
-            if error == nil{
-                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "AccountViewController")
-                self.navigationController!.pushViewController(vc, animated: true)
-            }
-                
-            //If the user is already logged in with an account then they need to logout to use another one
-            else if Auth.auth().currentUser != nil {
-                
-                let alertController = UIAlertController(title: "Already Logged in", message: "Kindly Log-out to use a different login account", preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
-            }
-                
-            //Check for login error like incorrect format if email id and password size
-            else{
-                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
-            }
-        }
+        
         
     }
     

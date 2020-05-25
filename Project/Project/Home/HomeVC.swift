@@ -29,55 +29,64 @@ class HomeVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     }
     
     //MARK: Table view for the other sections
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieTableViewCell
-        switch  indexPath.section
-        {
-        case 0:
-            cell.section = 0
-        case 1:
-            cell.section = 1
-        case 2:
-            cell.section = 2
-        default:
-            cell.section = 3
+        
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return 1
         }
-
-        return cell
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-           return sections.count
-       }
-       
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if(sections[section] == "")
-        {
-            HomeVC.sect = 0
+        
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieTableViewCell
+            switch  indexPath.section
+            {
+            case 0:
+                cell.section = 0
+            case 1:
+                cell.section = 1
+            case 2:
+                cell.section = 2
+            default:
+                cell.section = 3
+            }
+            if(indexPath.section == 0)
+            {
+                cell.setTimer()
+            }
+            else
+            {
+                cell.pagecontrols.isHidden = true
+            }
+            cell.view = self
+            return cell
         }
-           return sections[section]
-       }
-       
-       func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if(indexPath.section == 0)
-        {
-            return 400
-        }
-        else{
-            return 300
-        }
+        
+        func numberOfSections(in tableView: UITableView) -> Int {
+               return sections.count
+           }
            
-       }
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let cell = cell as? MovieTableViewCell
-        {
-            cell.poster.tag = indexPath.section
-            cell.poster.reloadData()
+        func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            if(sections[section] == "")
+            {
+                HomeVC.sect = 0
+            }
+               return sections[section]
+           }
+           
+           func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            if(indexPath.section == 0)
+            {
+                return 400
+            }
+            else{
+                return 300
+            }
+               
+           }
+        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+            if let cell = cell as? MovieTableViewCell
+            {
+                
+                cell.poster.tag = indexPath.section
+                cell.poster.reloadData()
+            }
         }
     }
-}

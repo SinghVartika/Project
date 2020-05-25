@@ -10,7 +10,7 @@ import UIKit
 import AlamofireImage
 
 class MoviedescVC: UIViewController {
-
+    
     @IBOutlet weak var movImage : UIImageView!
     @IBOutlet weak var movName : UILabel!
     @IBOutlet weak var rating : UILabel!
@@ -18,45 +18,54 @@ class MoviedescVC: UIViewController {
     @IBOutlet weak var year : UILabel!
     @IBOutlet weak var aboutMovie : UILabel!
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        //print (HomeVC.desc!)
-//        let URL = NSURL(string: "https://image.tmdb.org/t/p/w500\(MovieTableViewCell.desc!.backdrop_path!)")!
-//        movImage.af_setImage(withURL: URL as URL)
-//        movImage.contentMode = .scaleAspectFill
-//        if(MovieTableViewCell.desc?.media_type == "tv")
-//        {
-//            movName.text = MovieTableViewCell.desc!.name
-//            year.text = String((MovieTableViewCell.desc!.first_air_date)!.prefix(4))
-//        }
-//        else
-//        {
-//            movName.text = MovieTableViewCell.desc!.title
-//            year.text = String((MovieTableViewCell.desc!.release_date)!.prefix(4))
-//        }
-//        rating.text = String(describing: (MovieTableViewCell.desc!.vote_average)!)
-//        aboutMovie.text = MovieTableViewCell.desc!.overview
-//        if(MovieTableViewCell.desc?.original_language == "en")
-//        {
-//            language.text = "English"
-//        }
-//        else
-//        {
-//            language.text = "Others"
-//        }
-//
-//
-//    }
-//
-//
-//    /*
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destination.
-//        // Pass the selected object to the new view controller.
-//    }
-//    */
-//
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //print (HomeVC.desc!)
+        if(MovieTableViewCell.type == 1)
+        {
+            let URL = NSURL(string: "https://image.tmdb.org/t/p/w500\(MovieTableViewCell.mov!.backdrop_path!)")!
+            movImage.af_setImage(withURL: URL as URL)
+            movImage.contentMode = .scaleAspectFill
+            movName.text = MovieTableViewCell.mov!.title
+            year.text = String((MovieTableViewCell.mov!.release_date)!.prefix(4))
+            rating.text = String(describing: (MovieTableViewCell.mov!.vote_average)!)
+            aboutMovie.text = MovieTableViewCell.mov!.overview
+            if(MovieTableViewCell.mov?.original_language == "en")
+            {
+                language.text = "English"
+            }
+            else
+            {
+                language.text = "Others"
+            }
+        }
+        else
+        {
+            let URL = NSURL(string: "https://image.tmdb.org/t/p/w500\(MovieTableViewCell.desc!.backdrop_path!)")!
+            movImage.af_setImage(withURL: URL as URL)
+            movImage.contentMode = .scaleAspectFill
+            if(MovieTableViewCell.desc?.media_type == "tv")
+            {
+                movName.text = MovieTableViewCell.desc!.name
+                year.text = String((MovieTableViewCell.desc!.first_air_date)!.prefix(4))
+            }
+            else
+            {
+                movName.text = MovieTableViewCell.desc!.title
+                year.text = String((MovieTableViewCell.desc!.release_date)!.prefix(4))
+            }
+            rating.text = String(describing: (MovieTableViewCell.desc!.vote_average)!)
+            aboutMovie.text = MovieTableViewCell.desc!.overview
+            if(MovieTableViewCell.desc?.original_language == "en")
+            {
+                language.text = "English"
+            }
+            else
+            {
+                language.text = "Others"
+            }
+            
+        }
+    }
+    
 }
