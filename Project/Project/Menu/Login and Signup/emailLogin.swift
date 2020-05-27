@@ -11,6 +11,7 @@ import Firebase
 
 class manualLogin : login
 {
+    //MARK: User Login Function
     
     func loginUSer(Email: String, Password: String, view: UIViewController) {
         Auth.auth().signIn(withEmail: Email, password: Password) { (user, error) in
@@ -43,7 +44,7 @@ class manualLogin : login
         }
     }
     
-    
+    //MARK: User Logout Function
     func logoutUser(view: UIViewController) {
         
         //No user exist but trying to sign out
@@ -71,6 +72,7 @@ class manualLogin : login
         
     }
     
+    //MARK: User Signup Function
     func signupUser(Email: String, Password: String, rePassword: String, view: UIViewController) {
         
         //Check for password and re-typed password

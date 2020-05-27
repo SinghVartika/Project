@@ -77,6 +77,8 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     var x = 1
     static var desc : Data?
     static var mov : details?
+    
+    static var fav: [details?] = []
     static var type = -1
     var section = -1
     
@@ -144,7 +146,7 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
                         decoder.keyDecodingStrategy = .useDefaultKeys
                         let result = try decoder.decode(movie.self, from: data)
                         self?.bestMovie = result
-                        print(result)
+                        //print(result)
                     } catch { print(error) }
                 }
                 
@@ -168,7 +170,7 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
                         decoder.keyDecodingStrategy = .useDefaultKeys
                         let result = try decoder.decode(movie.self, from: data)
                         self?.popular = result
-                        print(result)
+                        //print(result)
                     } catch { print(error) }
                 }
                 
@@ -192,7 +194,7 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
                         decoder.keyDecodingStrategy = .useDefaultKeys
                         let result = try decoder.decode(movie.self, from: data)
                         self?.scifi = result
-                        print(result)
+                        //print(result)
                     } catch { print(error) }
                 }
                 
@@ -216,7 +218,7 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
                         decoder.keyDecodingStrategy = .useDefaultKeys
                         let result = try decoder.decode(movie.self, from: data)
                         self?.kid = result
-                        print(result)
+                        //print(result)
                     } catch { print(error) }
                 }
                 
@@ -240,7 +242,7 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
                         decoder.keyDecodingStrategy = .useDefaultKeys
                         let result = try decoder.decode(movie.self, from: data)
                         self?.adult = result
-                        print(result)
+                        //print(result)
                     } catch { print(error) }
                 }
                 
@@ -284,16 +286,16 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
             MovieTableViewCell.type = 1
             MovieTableViewCell.mov = bestMovie!.results[indexPath.row]
         case 2:
-            MovieTableViewCell.type = 1
+            MovieTableViewCell.type = 2
             MovieTableViewCell.mov = popular!.results[indexPath.row]
         case  3:
-            MovieTableViewCell.type = 1
+            MovieTableViewCell.type = 3
             MovieTableViewCell.mov = scifi!.results[indexPath.row]
         case 4:
-            MovieTableViewCell.type = 1
+            MovieTableViewCell.type = 4
             MovieTableViewCell.mov = kid!.results[indexPath.row]
         default:
-            MovieTableViewCell.type = 1
+            MovieTableViewCell.type = 5
             MovieTableViewCell.mov = adult!.results[indexPath.row]
         }
         

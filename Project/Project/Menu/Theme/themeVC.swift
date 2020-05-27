@@ -10,6 +10,7 @@ import UIKit
 
 class themeVC: UIViewController {
  
+    let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -17,18 +18,21 @@ class themeVC: UIViewController {
     }
     
     @IBAction func darkButton(_ sender: UIButton) {
-        AppDelegate.thm = "Dark"
+        defaults.set("Dark", forKey: "theme")
         Theme.darkTheme()
         self.loadView()
     }
 
     @IBAction func lightButton(_ sender: UIButton) {
-        AppDelegate.thm = "Light"
+        defaults.set("Light", forKey: "theme")
         Theme.defaultTheme()
         self.loadView()
     }
     
-
+    @IBAction func defaultButton(_ sender: Any) {
+        defaults.set("None", forKey: "theme")
+    }
+    
     /*
     // MARK: - Navigation
 

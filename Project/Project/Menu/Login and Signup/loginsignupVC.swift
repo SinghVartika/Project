@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
 protocol login {
     func loginUSer(Email: String, Password: String, view: UIViewController)
@@ -19,12 +20,15 @@ class loginsignupVC: UIViewController {
     
     @IBOutlet weak var login: UIView!
     @IBOutlet weak var signin: UIView!
+    //@IBOutlet weak var signInButton: GIDSignInButton!
     
-    
+    var loginned = manualLogin()
     override func viewDidLoad() {
         super.viewDidLoad()
         signin.isHidden = false
         login.isHidden = true
+//        GIDSignIn.sharedInstance()?.presentingViewController = self
+//        GIDSignIn.sharedInstance().signIn()
         // Do any additional setup after loading the view.
     }
     
@@ -40,6 +44,8 @@ class loginsignupVC: UIViewController {
     }
     
     @IBAction func logOutAction(_ sender: Any) {
+        
+        loginned.logoutUser(view: self)
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "AccountViewController")

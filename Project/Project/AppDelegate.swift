@@ -10,31 +10,37 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import Firebase
+import GoogleSignIn
+
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
-    static var thm:String = "None"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey("AIzaSyDiVI4Yeqp1Z2AjKwwAly21ucKqDgPdCWs")
         GMSPlacesClient.provideAPIKey("AIzaSyDiVI4Yeqp1Z2AjKwwAly21ucKqDgPdCWs")
+        UserDefaults.standard.set("None", forKey: "theme")
         let navigationBarAppearace = UINavigationBar.appearance()
         FirebaseApp.configure()
-        print(AppDelegate.thm)
-        if (AppDelegate.thm == "Light")
+//        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+//        GIDSignIn.sharedInstance().delegate = (self as! GIDSignInDelegate)
+        print(UserDefaults.standard.string(forKey: "theme"))
+        if (UserDefaults.standard.string(forKey: "theme") == "Light")
         {
             navigationBarAppearace.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
             navigationBarAppearace.tintColor = UIColor.gray
         }
-        else if (AppDelegate.thm == "Dark")
+        else if (UserDefaults.standard.string(forKey: "theme") == "Dark")
         {
-            navigationBarAppearace.barTintColor = UIColor.green
-            navigationBarAppearace.tintColor = UIColor.green
+            navigationBarAppearace.barTintColor = UIColor.brown
+            navigationBarAppearace.tintColor = UIColor.brown
         }
+        
+        
         return true
     }
 
@@ -46,6 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
+      -> Bool {
+      return GIDSignIn.sharedInstance().handle(url)
+    }
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.

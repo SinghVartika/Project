@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+
 
 class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -15,6 +17,7 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
     @IBOutlet weak var sbtn: UIButton!
     @IBOutlet weak var jbtn: UIButton!
     @IBOutlet weak var contentStackView: UIView!
+    @IBOutlet weak var welcomeLabel: UILabel!
     
     func flag(country:String) -> String {
         let base : UInt32 = 127397
@@ -24,7 +27,7 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
         }
         return String(s)
     }
-
+    
     
     public static var languageName: String = "ENGLISH"
     public static var countryName: String = "IND"
@@ -32,7 +35,7 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
     
     let arr = [ ["Location", "Movies", "Notifications", "My Circle/Employee"], ["Country", "Language", "About Us", "FAQ", "Change Theme"] ]
     
-     let imgarr = [ [#imageLiteral(resourceName: "TrackOrder"), #imageLiteral(resourceName: "SizeChart"), #imageLiteral(resourceName: "Notifications"), #imageLiteral(resourceName: "StoreLocator")], [ #imageLiteral(resourceName: "Country"), #imageLiteral(resourceName: "Language"), #imageLiteral(resourceName: "AboutUs"), #imageLiteral(resourceName: "FAQ"), #imageLiteral(resourceName: "ShippingAndReturn")] ]
+    let imgarr = [ [#imageLiteral(resourceName: "TrackOrder"), #imageLiteral(resourceName: "SizeChart"), #imageLiteral(resourceName: "Notifications"), #imageLiteral(resourceName: "StoreLocator")], [ #imageLiteral(resourceName: "Country"), #imageLiteral(resourceName: "Language"), #imageLiteral(resourceName: "AboutUs"), #imageLiteral(resourceName: "FAQ"), #imageLiteral(resourceName: "ShippingAndReturn")] ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +53,15 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
         tbview.register(nib3, forCellReuseIdentifier: "LanguageTableCell")
         
         
-        
+        if Auth.auth().currentUser == nil
+        {
+            welcomeLabel.text = "Welcome"
+        }
+        else
+        {
+            let user:String = String(describing: Auth.auth().currentUser!.email!)
+            welcomeLabel.text = "Welcome \(user)"
+        }
         
     }
     
@@ -61,45 +72,45 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
     }
     
     @IBAction func addImageBtn(_ sender: Any) {
-            let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            
-            actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (alert:UIAlertAction!) -> Void in
-                self.camera()
-            }))
-            
-            actionSheet.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (alert:UIAlertAction!) -> Void in
-                self.photoLibrary()
-            }))
-            
-            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            
-            self.present(actionSheet, animated: true, completion: nil)
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (alert:UIAlertAction!) -> Void in
+            self.camera()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (alert:UIAlertAction!) -> Void in
+            self.photoLibrary()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    
+    func camera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            let myPickerController = UIImagePickerController()
+            myPickerController.delegate = self;
+            myPickerController.sourceType = .camera
+            self.present(myPickerController, animated: true, completion: nil)
         }
-        
-        
-        func camera() {
-            if UIImagePickerController.isSourceTypeAvailable(.camera){
-                let myPickerController = UIImagePickerController()
-                myPickerController.delegate = self;
-                myPickerController.sourceType = .camera
-                self.present(myPickerController, animated: true, completion: nil)
-            }
+    }
+    
+    func photoLibrary() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            let myPickerController = UIImagePickerController()
+            myPickerController.delegate = self;
+            myPickerController.sourceType = .photoLibrary
+            myPickerController.allowsEditing = true
+            self.present(myPickerController, animated: true, completion: nil)
         }
-        
-        func photoLibrary() {
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-                let myPickerController = UIImagePickerController()
-                myPickerController.delegate = self;
-                myPickerController.sourceType = .photoLibrary
-                myPickerController.allowsEditing = true
-                self.present(myPickerController, animated: true, completion: nil)
-            }
-        }
-        
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            self.dismiss(animated: true, completion: nil)
-        }
-        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         picker.dismiss(animated: true)
@@ -108,22 +119,22 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
             self.imageOutlet.image = pickedImage as? UIImage
         }
     }
-
+    
     
     @IBAction func signin(_ sender : UIButton){
-       let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-     let vc = storyboard.instantiateViewController(withIdentifier: "loginsignupVC")
-    self.navigationController!.pushViewController(vc, animated: true)
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "loginsignupVC")
+        self.navigationController!.pushViewController(vc, animated: true)
     }
     
     @IBAction func join(_ sender : UIButton){
-       let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-     let vc = storyboard.instantiateViewController(withIdentifier: "loginsignupVC")
-    self.navigationController!.pushViewController(vc, animated: true)
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "loginsignupVC")
+        self.navigationController!.pushViewController(vc, animated: true)
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         
+        
         return arr[section].count
     }
     
@@ -144,7 +155,7 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
         }
             
         else if indexPath.section == 1 && indexPath.row == 1 {
-           
+            
             let cell = tbview.dequeueReusableCell(withIdentifier: "LanguageTableCell", for: indexPath) as! LanguageTableViewCell
             
             cell.setLaguageIconImageView(image: imgarr[1][1])
@@ -154,14 +165,14 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
             return cell
             
         }
-      
+            
         else {
             
             let cell = tbview.dequeueReusableCell(withIdentifier: "AccountTableCell", for: indexPath) as! AccountTableViewCell
-        
+            
             cell.setValueToLabel(text: arr[indexPath.section][indexPath.row])
             cell.setImage(image: imgarr[indexPath.section][indexPath.row])
-        
+            
             return cell
         }
     }
@@ -187,6 +198,8 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
         
         tbview.deselectRow(at: indexPath, animated: true)
         
+        
+        
         if indexPath.section == 1 && indexPath.row == 0 {
             
             
@@ -209,7 +222,7 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
             
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        
+            
         else if indexPath.section == 0 && indexPath.row == 0 {
             
             
@@ -218,7 +231,25 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
             
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        
+            
+        else if indexPath.section == 0 && indexPath.row == 1 {
+            
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "HomeVC")
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+            
+        else if indexPath.section == 0 && indexPath.row == 3 {
+            
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "EmployeeVC")
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+            
         else if indexPath.section == 1 && indexPath.row == 4 {
             
             
@@ -228,6 +259,6 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
             self.navigationController?.pushViewController(vc, animated: true)
         }
         
-    
-}
+        
+    }
 }

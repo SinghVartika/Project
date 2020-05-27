@@ -15,6 +15,7 @@ struct Theme {
     static var buttonBackgroundColor:UIColor?
     static var buttonBackgroundColorHighlighted:UIColor?
     static var labletextColor:UIColor?
+    static var font : String?
 
     static public func defaultTheme() {
         self.backgroundColor = UIColor.white
@@ -22,15 +23,17 @@ struct Theme {
         self.buttonBackgroundColor = UIColor.white
         self.buttonBackgroundColorHighlighted = UIColor.red
         self.labletextColor = UIColor.black
+        self.font = "Times New Roman"
         updateDisplay()
     }
 
     static public func darkTheme() {
-        self.backgroundColor = UIColor.darkGray
+        self.backgroundColor = UIColor.black
         self.buttonTextColor = UIColor.white
         self.buttonBackgroundColor = UIColor.black
         self.buttonBackgroundColorHighlighted = UIColor.yellow
         self.labletextColor = UIColor.white
+        self.font = "Helvetica"
         updateDisplay()
     }
 
@@ -49,6 +52,7 @@ struct Theme {
         
         let proxyLable = UILabel.appearance()
         proxyLable.textColor = Theme.labletextColor
+        proxyLable.font = UIFont(name: self.font ?? "", size: 18)
 
         let proxyView = UIView.appearance()
         proxyView.backgroundColor = backgroundColor
