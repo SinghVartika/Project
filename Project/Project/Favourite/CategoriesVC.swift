@@ -9,16 +9,17 @@
 import UIKit
 
 class CategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var favMovies: UITableView!
     
+    var mv : details?
     var favListArray : [[String]] = []
     var Counter : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "My favourite Movies"
+        self.title = "Favourites"
         favMovies.dataSource = self
         favMovies.delegate = self
         
@@ -43,26 +44,32 @@ class CategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as! FavTableViewCell
         
-        let URL = NSURL(string: "https://image.tmdb.org/t/p/w500\(favListArray[indexPath.row][1])")!
-        cell.img.af_setImage(withURL: URL as URL)
+            let URL = NSURL(string: "https://image.tmdb.org/t/p/w500\(favListArray[indexPath.row][1])")!
+            cell.img.af_setImage(withURL: URL as URL)
+        
         cell.movRating(rtn: favListArray[indexPath.row][4])
         cell.title(ttl: favListArray[indexPath.row][2])
-          return cell
+        return cell
     }
-       
-       func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
-           
-       }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        mv?.backdrop_path = favListArray[indexPath.row][0]
+        mv?.poster_path = favListArray[indexPath.row][1]
+        mv?.title = favListArray[indexPath.row][2]
+        mv?.release_date = favListArray[indexPath.row][3]
+        mv?.vote_average = Float(favListArray[indexPath.row][4])
+        mv?.overview = favListArray[indexPath.row][5]
+        MovieTableViewCell.mov = mv
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MoviedescVC")
+        self.navigationController!.pushViewController(vc, animated: true)
+    }
+    
+    
 }

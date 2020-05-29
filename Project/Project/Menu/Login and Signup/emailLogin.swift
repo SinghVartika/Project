@@ -9,12 +9,12 @@
 import Foundation
 import Firebase
 
-class manualLogin : login
+class emailLogin : login
 {
     //MARK: User Login Function
     
-    func loginUSer(Email: String, Password: String, view: UIViewController) {
-        Auth.auth().signIn(withEmail: Email, password: Password) { (user, error) in
+    func loginUSer(Name: String?, Email: String?, Password: String, view: UIViewController) {
+        Auth.auth().signIn(withEmail: Email!, password: Password) { (user, error) in
             
             //If no error occurs then complete the login process
             if error == nil{
@@ -73,7 +73,7 @@ class manualLogin : login
     }
     
     //MARK: User Signup Function
-    func signupUser(Email: String, Password: String, rePassword: String, view: UIViewController) {
+    func signupUser(Name: String?, Email: String?, Password: String, rePassword: String, ques: String?, view: UIViewController) {
         
         //Check for password and re-typed password
 
@@ -99,7 +99,7 @@ class manualLogin : login
         //If no error occurs then complete the Sign up process
 
         else{
-            Auth.auth().createUser(withEmail: Email, password: Password){ (user, error) in
+            Auth.auth().createUser(withEmail: Email!, password: Password){ (user, error) in
                 if error == nil {
                     let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                     let vc = storyboard.instantiateViewController(withIdentifier: "AccountViewController")
@@ -116,4 +116,3 @@ class manualLogin : login
         }
     }
 }
-

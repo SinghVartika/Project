@@ -50,6 +50,7 @@ class MoviedescVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let nib = UINib.init(nibName: "PosterCollectionViewCell", bundle: nil)
         extra.register(nib, forCellWithReuseIdentifier: "movPosterCell")
         getData()
+        
          
         
         if MovieTableViewCell.type == 0
@@ -100,9 +101,12 @@ class MoviedescVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             newfav.append(String(describing: (MovieTableViewCell.mov!.vote_average) ?? 0))
             newfav.append(MovieTableViewCell.mov?.overview ?? "")
             
+            if MovieTableViewCell.mov!.backdrop_path != nil
+            {
             let URL = NSURL(string: "https://image.tmdb.org/t/p/w500\(MovieTableViewCell.mov!.backdrop_path!)")!
             movImage.af_setImage(withURL: URL as URL)
             movImage.contentMode = .scaleAspectFill
+            }
             movName.text = MovieTableViewCell.mov!.title
             year.text = String((MovieTableViewCell.mov!.release_date)!.prefix(4))
             rating.text = String(describing: (MovieTableViewCell.mov!.vote_average)!)
@@ -149,15 +153,15 @@ class MoviedescVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         else if MovieTableViewCell.type == 3
        {
-            str = "https://api.themoviedb.org/3/trending/all/day?api_key=820016b7116f872f5f27bf56f9fdfb66"
+            str = "https://api.themoviedb.org/3/discover/movie?with_genres=878&sort_by=vote_average.desc&&api_key=820016b7116f872f5f27bf56f9fdfb66"
         }
         else if MovieTableViewCell.type == 4
        {
-            str = "https://api.themoviedb.org/3/discover/movie?with_genres=878&sort_by=vote_average.desc&&api_key=820016b7116f872f5f27bf56f9fdfb66"
+            str = "https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&&api_key=820016b7116f872f5f27bf56f9fdfb66"
         }
         else
        {
-            str = "https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&&api_key=820016b7116f872f5f27bf56f9fdfb66"
+            str = "http://api.themoviedb.org/3/discover/movie?certification_country=US&certification=R&sort_by=vote_average.desc&&api_key=820016b7116f872f5f27bf56f9fdfb66"
         }
         AF.request(str , method: .get, parameters: nil, encoding: URLEncoding.default)
             .responseData { [weak self] response in
@@ -193,7 +197,8 @@ class MoviedescVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        MovieTableViewCell.mov = mov?.results[indexPath.row]
+        
+            MovieTableViewCell.mov = mov?.results[indexPath.row]
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MoviedescVC")
@@ -228,3 +233,5 @@ class MoviedescVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
 }
+
+

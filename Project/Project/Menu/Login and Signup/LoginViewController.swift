@@ -12,23 +12,36 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
+    var currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
     
-    
-    @IBOutlet weak var email : UITextField!
+    @IBOutlet weak var name : UITextField!
     @IBOutlet weak var password : UITextField!
-    //@IBOutlet weak var signInButton: GIDSignInButton!
-
     
     var login = manualLogin()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        GIDSignIn.sharedInstance()?.presentingViewController = self
-//        GIDSignIn.sharedInstance().signIn()
-        // Do any additional setup after loading the view.
     }
     
+    //MARK: call for the forget password View
+    @IBAction func forgetPassword(_ sender: Any) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ForgetPasswordViewController")
+        self.navigationController!.pushViewController(vc, animated: true)
+    }
+    
+    //MARK: Call for login Action
     @IBAction func loginAction(_ sender: Any) {
-        login.loginUSer(Email: email.text ?? "", Password: password.text ?? "", view: self)
+        if ((GIDSignIn.sharedInstance()?.currentUser) != nil)
+        {
+            let alertController = UIAlertController(title: "Already Logged in Using Google", message: "Kindly Log-out to use a different login account", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
+        login.loginUSer(Name: name.text ?? "", Email: "none", Password: password.text ?? "", view: self)
+        
     }
     
     /*

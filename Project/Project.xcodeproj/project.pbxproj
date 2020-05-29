@@ -30,10 +30,17 @@
 		45506DFD2433564F00510CDA /* CountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45506DFB2433564F00510CDA /* CountryTableViewCell.xib */; };
 		45506E002433A10A00510CDA /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45506DFE2433A10A00510CDA /* AccountTableViewCell.swift */; };
 		45506E012433A10A00510CDA /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45506DFF2433A10A00510CDA /* AccountTableViewCell.xib */; };
+		4558A07E247FC55F00E1BBB4 /* BackgroundSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558A07D247FC55F00E1BBB4 /* BackgroundSelectorViewController.swift */; };
+		4558A080247FCAB700E1BBB4 /* ButtonSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558A07F247FCAB700E1BBB4 /* ButtonSelectorViewController.swift */; };
+		4558A082247FCACF00E1BBB4 /* TitleTextSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558A081247FCACF00E1BBB4 /* TitleTextSelectorViewController.swift */; };
+		4558A0842481424400E1BBB4 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558A0832481424400E1BBB4 /* ForgetPasswordViewController.swift */; };
 		45949E3B247D4F4700D1F0D8 /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45949E39247D4F4700D1F0D8 /* PosterCollectionViewCell.swift */; };
 		45949E3C247D4F4700D1F0D8 /* PosterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45949E3A247D4F4700D1F0D8 /* PosterCollectionViewCell.xib */; };
 		45949E41247E783200D1F0D8 /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45949E3F247E783200D1F0D8 /* FavTableViewCell.swift */; };
 		45949E42247E783200D1F0D8 /* FavTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45949E40247E783200D1F0D8 /* FavTableViewCell.xib */; };
+		45949E44247E94EC00D1F0D8 /* manualLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45949E43247E94EC00D1F0D8 /* manualLogin.swift */; };
+		45949E48247EDFD400D1F0D8 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45949E47247EDFD400D1F0D8 /* CustomViewController.swift */; };
+		45949E4C247EFCDA00D1F0D8 /* TextSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45949E4B247EFCDA00D1F0D8 /* TextSelectorViewController.swift */; };
 		459950122472BB6C0018B629 /* EmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459950102472BB6C0018B629 /* EmployeeTableViewCell.swift */; };
 		459950132472BB6C0018B629 /* EmployeeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 459950112472BB6C0018B629 /* EmployeeTableViewCell.xib */; };
 		4599502524753D6F0018B629 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4599502424753D6F0018B629 /* CardViewController.swift */; };
@@ -123,10 +130,17 @@
 		45506DFB2433564F00510CDA /* CountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryTableViewCell.xib; sourceTree = "<group>"; };
 		45506DFE2433A10A00510CDA /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		45506DFF2433A10A00510CDA /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
+		4558A07D247FC55F00E1BBB4 /* BackgroundSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSelectorViewController.swift; sourceTree = "<group>"; };
+		4558A07F247FCAB700E1BBB4 /* ButtonSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSelectorViewController.swift; sourceTree = "<group>"; };
+		4558A081247FCACF00E1BBB4 /* TitleTextSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextSelectorViewController.swift; sourceTree = "<group>"; };
+		4558A0832481424400E1BBB4 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		45949E39247D4F4700D1F0D8 /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
 		45949E3A247D4F4700D1F0D8 /* PosterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterCollectionViewCell.xib; sourceTree = "<group>"; };
 		45949E3F247E783200D1F0D8 /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
 		45949E40247E783200D1F0D8 /* FavTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavTableViewCell.xib; sourceTree = "<group>"; };
+		45949E43247E94EC00D1F0D8 /* manualLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = manualLogin.swift; sourceTree = "<group>"; };
+		45949E47247EDFD400D1F0D8 /* CustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
+		45949E4B247EFCDA00D1F0D8 /* TextSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSelectorViewController.swift; sourceTree = "<group>"; };
 		459950102472BB6C0018B629 /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
 		459950112472BB6C0018B629 /* EmployeeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeeTableViewCell.xib; sourceTree = "<group>"; };
 		4599502424753D6F0018B629 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -369,8 +383,10 @@
 			isa = PBXGroup;
 			children = (
 				45F6FD8024769EDA008DF5DD /* loginsignupVC.swift */,
+				45949E43247E94EC00D1F0D8 /* manualLogin.swift */,
 				45F6FD882476C23E008DF5DD /* emailLogin.swift */,
 				45F6FD822476AC63008DF5DD /* LoginViewController.swift */,
+				4558A0832481424400E1BBB4 /* ForgetPasswordViewController.swift */,
 				45F6FD842476AC7A008DF5DD /* SignUpViewController.swift */,
 			);
 			path = "Login and Signup";
@@ -389,6 +405,11 @@
 			children = (
 				45B8413A246FF38F0038D146 /* themeVC.swift */,
 				45B84143246FF9E90038D146 /* style.swift */,
+				45949E47247EDFD400D1F0D8 /* CustomViewController.swift */,
+				45949E4B247EFCDA00D1F0D8 /* TextSelectorViewController.swift */,
+				4558A07D247FC55F00E1BBB4 /* BackgroundSelectorViewController.swift */,
+				4558A07F247FCAB700E1BBB4 /* ButtonSelectorViewController.swift */,
+				4558A081247FCACF00E1BBB4 /* TitleTextSelectorViewController.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -715,8 +736,12 @@
 				45F6FD8B2477DC64008DF5DD /* MoviedescVC.swift in Sources */,
 				45F6FD6E247541F1008DF5DD /* CardTableViewCell.swift in Sources */,
 				454D83C424252F1C00490CE4 /* AccountViewController.swift in Sources */,
+				4558A0842481424400E1BBB4 /* ForgetPasswordViewController.swift in Sources */,
+				4558A07E247FC55F00E1BBB4 /* BackgroundSelectorViewController.swift in Sources */,
+				45949E4C247EFCDA00D1F0D8 /* TextSelectorViewController.swift in Sources */,
 				45506DF424334ED000510CDA /* countrypickerTableViewCell.swift in Sources */,
 				45F6FD7E24767508008DF5DD /* TrendingCollectionViewCell.swift in Sources */,
+				45949E48247EDFD400D1F0D8 /* CustomViewController.swift in Sources */,
 				4599502524753D6F0018B629 /* CardViewController.swift in Sources */,
 				45B84144246FF9E90038D146 /* style.swift in Sources */,
 				45506DF824334EEC00510CDA /* languagepickerTableViewCell.swift in Sources */,
@@ -724,6 +749,7 @@
 				45949E3B247D4F4700D1F0D8 /* PosterCollectionViewCell.swift in Sources */,
 				45506DFC2433564F00510CDA /* CountryTableViewCell.swift in Sources */,
 				45506DEC24333F1500510CDA /* LanguageTableViewCell.swift in Sources */,
+				45949E44247E94EC00D1F0D8 /* manualLogin.swift in Sources */,
 				45F6FD7124754971008DF5DD /* EmployeeVC.swift in Sources */,
 				45F6FD852476AC7A008DF5DD /* SignUpViewController.swift in Sources */,
 				454D83AF2424DD7900490CE4 /* HomeVC.swift in Sources */,
@@ -732,6 +758,8 @@
 				45506DF1243349D300510CDA /* countryVC.swift in Sources */,
 				454D83B52424F29300490CE4 /* CategoriesVC.swift in Sources */,
 				45949E41247E783200D1F0D8 /* FavTableViewCell.swift in Sources */,
+				4558A080247FCAB700E1BBB4 /* ButtonSelectorViewController.swift in Sources */,
+				4558A082247FCACF00E1BBB4 /* TitleTextSelectorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

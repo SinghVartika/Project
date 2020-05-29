@@ -11,22 +11,28 @@ import Firebase
 import GoogleSignIn
 
 class SignUpViewController: UIViewController {
-    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var name: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var passwordConfirm: UITextField!
-    //@IBOutlet weak var signInButton: GIDSignInButton!
+    @IBOutlet weak var securityQuestion: UITextField!
 
-    
+    var currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
     var login = manualLogin()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        GIDSignIn.sharedInstance()?.presentingViewController = self
-//        GIDSignIn.sharedInstance().signIn()
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func signUpAction(_ sender: Any) {
-        login.signupUser(Email: email.text ?? "", Password: password.text ?? "", rePassword: passwordConfirm.text ?? "", view: self)
+        if ((GIDSignIn.sharedInstance()?.currentUser) != nil)
+        {
+            let alertController = UIAlertController(title: "Already Logged in Using Google", message: "Kindly Log-out to use a different login account", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
+        login.signupUser(Name: name.text ?? "", Email: "none", Password: password.text ?? "", rePassword: passwordConfirm.text ?? "", ques: securityQuestion.text ?? "" , view: self)
         
     }
     

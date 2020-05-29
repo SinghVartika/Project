@@ -11,6 +11,8 @@ target 'Project' do
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
   pod 'AlamofireImage'
+  pod 'SwiftHSVColorPicker'
+  pod 'iOSDropDown'
 
   # Pods for Project
 

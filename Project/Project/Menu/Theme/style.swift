@@ -36,6 +36,16 @@ struct Theme {
         self.font = "Helvetica"
         updateDisplay()
     }
+    
+    static public func customTheme(_ Text : UIColor , _ Background : UIColor , _ Button : UIColor) {
+        self.backgroundColor = Background
+        self.buttonTextColor = Text
+        self.buttonBackgroundColor = Button
+        self.buttonBackgroundColorHighlighted = Button
+        self.labletextColor = Text
+        self.font = "Helvetica"
+        updateDisplay()
+    }
 
     static public func updateDisplay() {
         let proxyButton = UIButton.appearance()

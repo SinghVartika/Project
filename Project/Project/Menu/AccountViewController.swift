@@ -52,15 +52,22 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
         let nib3 = UINib(nibName: "LanguageTableViewCell", bundle: nil)
         tbview.register(nib3, forCellReuseIdentifier: "LanguageTableCell")
         
-        
-        if Auth.auth().currentUser == nil
-        {
-            welcomeLabel.text = "Welcome"
+        if UserDefaults.standard.object(forKey: "currentUser") != nil{
+        currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
         }
-        else
+        
+        if Auth.auth().currentUser != nil
         {
             let user:String = String(describing: Auth.auth().currentUser!.email!)
             welcomeLabel.text = "Welcome \(user)"
+        }
+        else if (currentUser.isEmpty == false)
+        {
+            let user:String = String(describing: currentUser[0])
+            welcomeLabel.text = "Welcome \(user)"
+        }
+        else{
+            welcomeLabel.text = "Welcome"
         }
         
     }

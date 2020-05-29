@@ -33,6 +33,13 @@ class themeVC: UIViewController {
         defaults.set("None", forKey: "theme")
     }
     
+    @IBAction func customTheme(_ sender: Any) {
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CustomViewController")
+        self.navigationController!.pushViewController(vc, animated: true)
+    }
+    
+    
     /*
     // MARK: - Navigation
 

@@ -15,9 +15,9 @@ import GoogleSignIn
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
-
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -26,9 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set("None", forKey: "theme")
         let navigationBarAppearace = UINavigationBar.appearance()
         FirebaseApp.configure()
-//        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-//        GIDSignIn.sharedInstance().delegate = (self as! GIDSignInDelegate)
-        print(UserDefaults.standard.string(forKey: "theme"))
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = (self as! GIDSignInDelegate)
+        //print(UserDefaults.standard.string(forKey: "theme"))
         if (UserDefaults.standard.string(forKey: "theme") == "Light")
         {
             navigationBarAppearace.barTintColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
@@ -62,7 +62,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+      // ...
+      if let error = error {
+        // ...
+        return
+      }
 
+      guard let authentication = user.authentication else { return }
+        _ = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                        accessToken: authentication.accessToken)
+      // ...
+    }
+
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
 
 }
 
