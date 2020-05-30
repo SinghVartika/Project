@@ -56,7 +56,7 @@ class loginsignupVC: UIViewController , LoginButtonDelegate, GIDSignInDelegate{
         }
         else if Auth.auth().currentUser != nil
         {
-            GIDSignIn.sharedInstance().signOut()
+            
             do {
                 //Try signing out
                 try Auth.auth().signOut()
@@ -65,6 +65,7 @@ class loginsignupVC: UIViewController , LoginButtonDelegate, GIDSignInDelegate{
                 //Catch error if any while signin out
                 print ("Error signing out: %@", signOutError)
             }
+            GIDSignIn.sharedInstance().signOut()
         }
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
@@ -84,7 +85,11 @@ class loginsignupVC: UIViewController , LoginButtonDelegate, GIDSignInDelegate{
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
         }
-        GIDSignIn.sharedInstance().signIn()
+        else
+        {
+            GIDSignIn.sharedInstance().signIn()
+        }
+        
     }
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         print("Google Sing In")

@@ -54,7 +54,7 @@ struct Theme {
         proxyButton.titleLabel?.backgroundColor = Theme.buttonBackgroundColor
         if (proxyButton.isHighlighted == true)
         {
-            proxyButton.backgroundColor = Theme.buttonBackgroundColorHighlighted
+            proxyButton.backgroundColor = Theme.backgroundColor
         }
         else
         {

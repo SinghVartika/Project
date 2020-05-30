@@ -30,6 +30,14 @@ class manualLogin : login
         currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
         }
         
+        if allUsers == [[]]
+        {
+            let alertController = UIAlertController(title: "No user exists", message: "No one is logged in. First sign in to access the login functionality.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            alertController.addAction(defaultAction)
+            view.present(alertController, animated: true, completion: nil)
+        }
         
         for i in 0...allUsers.count-1
         {
@@ -77,9 +85,12 @@ class manualLogin : login
         else{
             
             currentUser = user
+        
             UserDefaults.standard.set(currentUser, forKey: "currentUser")
             UserDefaults.standard.set(allUsers, forKey: "users")
             temp?.removeAll()
+            
+            
             
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "AccountViewController")
@@ -112,6 +123,7 @@ class manualLogin : login
         // Complete the log out process
         else{
             currentUser.removeAll()
+        
             UserDefaults.standard.set(currentUser, forKey: "currentUser")
             UserDefaults.standard.set(allUsers, forKey: "users")
             
