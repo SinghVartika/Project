@@ -10,25 +10,21 @@ import UIKit
 import SwiftHSVColorPicker
 
 
-protocol ButtonColorSelecterDelegate: class {
-    func userDidSelectButtonColor(info3: UIColor)
-}
+
 
 class ButtonSelectorViewController: UIViewController {
     @IBOutlet weak var myview : UIView!
     let colorPicker = SwiftHSVColorPicker(frame: CGRect(x: 10, y: 20, width: 300, height: 400))
-    
-    weak var delegate: ButtonColorSelecterDelegate? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.myview.addSubview(colorPicker)
         colorPicker.setViewColor(UIColor.red)
-
+        
     }
     
     @IBAction func confirm(_ sender: Any) {
-        delegate?.userDidSelectButtonColor(info3: colorPicker.color)
+        CustomViewController.btnColor = colorPicker.color
         self.navigationController?.popViewController(animated: true)
     }
     

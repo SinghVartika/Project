@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
     
     //MARK: Call for login Action
     @IBAction func loginAction(_ sender: Any) {
-        if ((GIDSignIn.sharedInstance()?.currentUser) != nil)
+        if Auth.auth().currentUser != nil
         {
             let alertController = UIAlertController(title: "Already Logged in Using Google", message: "Kindly Log-out to use a different login account", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -39,8 +39,11 @@ class LoginViewController: UIViewController {
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
         }
-        
-        login.loginUSer(Name: name.text ?? "", Email: "none", Password: password.text ?? "", view: self)
+            
+        else
+        {
+            login.loginUSer(Name: name.text ?? "", Email: "none", Password: password.text ?? "", view: self)
+        }
         
     }
     

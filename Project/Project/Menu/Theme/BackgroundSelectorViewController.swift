@@ -11,15 +11,10 @@ import UIKit
 import SwiftHSVColorPicker
 
 
-protocol BackgroundColorSelecterDelegate: class {
-    func userDidSelectBackgroundColor(info2: UIColor)
-}
-
 class BackgroundSelectorViewController: UIViewController {
     @IBOutlet weak var myview : UIView!
     let colorPicker = SwiftHSVColorPicker(frame: CGRect(x: 10, y: 20, width: 300, height: 400))
 
-    weak var delegate: BackgroundColorSelecterDelegate? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         self.myview.addSubview(colorPicker)
@@ -29,7 +24,7 @@ class BackgroundSelectorViewController: UIViewController {
     
 
     @IBAction func confirm(_ sender: Any) {
-        delegate?.userDidSelectBackgroundColor(info2: colorPicker.color)
+        CustomViewController.bknColor = colorPicker.color
         self.navigationController?.popViewController(animated: true)
     }
     /*

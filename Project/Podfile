@@ -13,6 +13,9 @@ target 'Project' do
   pod 'AlamofireImage'
   pod 'SwiftHSVColorPicker'
   pod 'iOSDropDown'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
+  pod 'FBSDKShareKit'
 
   # Pods for Project
 

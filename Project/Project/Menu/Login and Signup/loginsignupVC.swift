@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import FBSDKLoginKit
 
 protocol login {
     func loginUSer(Name: String?, Email: String?, Password: String, view: UIViewController)
@@ -16,11 +17,13 @@ protocol login {
     func signupUser(Name: String?, Email: String?, Password: String, rePassword: String, ques:String?, view: UIViewController)
 }
 
-class loginsignupVC: UIViewController {
+class loginsignupVC: UIViewController , LoginButtonDelegate, GIDSignInDelegate{
     
     @IBOutlet weak var login: UIView!
     @IBOutlet weak var signin: UIView!
     @IBOutlet weak var signInButton: GIDSignInButton!
+    @IBOutlet weak var loginButton: FBLoginButton!
+    @IBOutlet weak var user: UILabel!
     var currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
     
     var loginned = manualLogin()
@@ -29,6 +32,7 @@ class loginsignupVC: UIViewController {
         signin.isHidden = false
         login.isHidden = true
         GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance().delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -45,18 +49,21 @@ class loginsignupVC: UIViewController {
     
     @IBAction func logOutAction(_ sender: Any) {
         
-        if currentUser.isEmpty == false
+        if currentUser.isEmpty != true
         {
             loginned.logoutUser(view: self)
         }
-        else
+        else if Auth.auth().currentUser != nil
         {
             GIDSignIn.sharedInstance().signOut()
             do {
+                //Try signing out
                 try Auth.auth().signOut()
-                } catch let signOutError as NSError {
-                  print ("Error signing out: %@", signOutError)
-                }
+            }
+            catch let signOutError as NSError {
+                //Catch error if any while signin out
+                print ("Error signing out: %@", signOutError)
+            }
         }
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
@@ -65,7 +72,7 @@ class loginsignupVC: UIViewController {
         
     }
     
-    @IBAction func googleSignIn(sender: AnyObject) {
+    @IBAction func googleSignIn(sender: GIDSignInButton) {
         
         if currentUser.isEmpty != true
         {
@@ -76,38 +83,92 @@ class loginsignupVC: UIViewController {
             self.present(alertController, animated: true, completion: nil)
         }
         GIDSignIn.sharedInstance().signIn()
-      }
-      func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        print("Google Sing In didSignInForUser")
+    }
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        print("Google Sing In")
         if let error = error {
-          print(error.localizedDescription)
-          return
+            print(error.localizedDescription)
+            return
         }
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: (authentication.idToken)!, accessToken: (authentication.accessToken)!)
-    // When user is signed in
-        Auth.auth().signIn(with: credential, completion: { (user, error) in
-          if let error = error {
-            print("Login error: \(error.localizedDescription)")
-            return
-          }
-        })
-      }
-      // Start Google OAuth2 Authentication
-      func sign(_ signIn: GIDSignIn?, present viewController: UIViewController?) {
-      
-        // Showing OAuth2 authentication window
-        if let aController = viewController {
-          present(aController, animated: true) {() -> Void in }
+        // When user is signed in
+        if Auth.auth().currentUser != nil {
+            let myAlert = UIAlertController(title:"Alert", message:"Already SignIn", preferredStyle: UIAlertController.Style.alert);
+            let okAction = UIAlertAction(title:"Ok", style:UIAlertAction.Style.default, handler:nil);
+            myAlert.addAction(okAction);
+            self.present(myAlert, animated:true, completion:nil);
         }
-      }
-      // After Google OAuth2 authentication
-      func sign(_ signIn: GIDSignIn?, dismiss viewController: UIViewController?) {
-        // Close OAuth2 authentication window
-        dismiss(animated: true) {() -> Void in }
-      }
+        else {
+            Auth.auth().signIn(with: credential, completion: { (user, error) in
+                if let error = error {
+                    print("Login error: \(error.localizedDescription)")
+                    return
+                }
+                if error != nil {
+                    return
+                }
+                else {
+                    let myAlert = UIAlertController(title:"Alert", message:"User successfully SignIn", preferredStyle: UIAlertController.Style.alert);
+                    let okAction = UIAlertAction(title:"Ok", style:UIAlertAction.Style.default, handler:nil);
+                    myAlert.addAction(okAction);
+                    self.present(myAlert, animated:true, completion:nil);
+                    self.currentuser()
+                }
+                
+            })
+        }
+    }
+    func currentuser() {
+        if let currentUser = Auth.auth().currentUser {
+            UserDefaults.standard.set(true, forKey: "LoggedIn")
+            UserDefaults.standard.synchronize()
+            user.text = " You are login as - " + (currentUser.displayName ?? "Display name not found")
+        }
+    }
     
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        else {
+            if Auth.auth().currentUser != nil {
+                let myAlert = UIAlertController(title:"Alert", message:"Already SignIn", preferredStyle: UIAlertController.Style.alert);
+                
+                let okAction = UIAlertAction(title:"Ok", style:UIAlertAction.Style.default, handler:nil);
+                
+                myAlert.addAction(okAction);
+                self.present(myAlert, animated:true, completion:nil);
+            }
+            else {
+                let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current?.tokenString ?? "")
+                Auth.auth().signIn(with: credential, completion: { (user, error) in
+                    if let error = error {
+                        print("Login error: \(error.localizedDescription)")
+                        return
+                    }
+                    if error != nil {
+                        return
+                    }
+                    else {
+                        let myAlert = UIAlertController(title:"Alert", message:"User successfully SignIn", preferredStyle: UIAlertController.Style.alert);
+                        
+                        let okAction = UIAlertAction(title:"Ok", style:UIAlertAction.Style.default, handler:nil);
+                        
+                        myAlert.addAction(okAction);
+                        self.present(myAlert, animated:true, completion:nil);
+                        self.currentuser()
+                    }
+                })
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        print("UserLoggedOut")
+        LoginManager().logOut()
+        try! Auth.auth().signOut()
+        user.alpha = 0
+    }
 }
-
-
-

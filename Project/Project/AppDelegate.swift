@@ -11,11 +11,11 @@ import GoogleMaps
 import GooglePlaces
 import Firebase
 import GoogleSignIn
-
+import FBSDKCoreKit
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate{
     
     
 
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let navigationBarAppearace = UINavigationBar.appearance()
         FirebaseApp.configure()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = (self as! GIDSignInDelegate)
+//        GIDSignIn.sharedInstance().delegate = self
         //print(UserDefaults.standard.string(forKey: "theme"))
         if (UserDefaults.standard.string(forKey: "theme") == "Light")
         {
@@ -39,11 +39,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             navigationBarAppearace.barTintColor = UIColor.brown
             navigationBarAppearace.tintColor = UIColor.brown
         }
-        
+       
+        func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+            return GIDSignIn.sharedInstance().handle(url)
+        }
         
         return true
     }
 
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -51,7 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url)
+    }
+    
+    @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
       -> Bool {
       return GIDSignIn.sharedInstance().handle(url)
@@ -72,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
       }
 
       guard let authentication = user.authentication else { return }
-        _ = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+      let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                         accessToken: authentication.accessToken)
       // ...
     }
@@ -81,6 +90,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Perform any operations when the user disconnects from app here.
         // ...
     }
-
 }
 

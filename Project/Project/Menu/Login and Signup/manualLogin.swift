@@ -21,6 +21,7 @@ class manualLogin : login
         
         let k = Name
         var temp : [String]?
+        temp?.removeAll()
         if UserDefaults.standard.object(forKey: "users") != nil{
         allUsers = UserDefaults.standard.object(forKey: "users") as! [[String]]
         }
@@ -71,9 +72,6 @@ class manualLogin : login
             alertController.addAction(defaultAction)
             view.present(alertController, animated: true, completion: nil)
         }
-            
-        
-            
             
             //Complete the login process
         else{
@@ -159,7 +157,7 @@ class manualLogin : login
             
         }
             
-            //If the user is already logged in with an account then they need to logout to use another one
+        //If the user is already logged in with an account then they need to logout to use another one
             
         else if  currentUser.isEmpty == false {
             

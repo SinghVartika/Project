@@ -8,12 +8,12 @@
 import UIKit
 import iOSDropDown
 
-class CustomViewController: UIViewController, TextColorSelecterDelegate, TitleTextColorSelecterDelegate, BackgroundColorSelecterDelegate, ButtonColorSelecterDelegate {
+class CustomViewController: UIViewController {
     
     @IBOutlet weak var fontList : DropDown!
-    var txtColor : UIColor?
-    var bknColor : UIColor?
-    var btnColor : UIColor?
+    static var txtColor : UIColor?
+    static var bknColor : UIColor?
+    static var btnColor : UIColor?
     var ttlTxtColor : UIColor?
     var font : String?
     override func viewDidLoad() {
@@ -51,33 +51,12 @@ class CustomViewController: UIViewController, TextColorSelecterDelegate, TitleTe
         self.navigationController!.pushViewController(vc, animated: true)
     }
     
-    // Delegate for setting the text color
-    func userDidSelectTextColor(info1: UIColor) {
-        txtColor = info1
-    }
-    
-    // Delegate for setting the title text color
-    func userDidSelectTitleTextColor(info4: UIColor) {
-        ttlTxtColor = info4
-    }
-    
-    // Delegate for setting the text color
-    func userDidSelectBackgroundColor(info2: UIColor) {
-        bknColor = info2
-        print(bknColor!)
-    }
-    
-    // Delegate for setting the text color
-    func userDidSelectButtonColor(info3: UIColor) {
-        btnColor = info3
-    }
-    
     @IBAction func ApplySelection(_ sender: Any) {
         
         let sample = UILabel.appearance()
         sample.font = UIFont(name: self.font ?? "Times New Roman", size: 14)
         
-        Theme.customTheme(txtColor!, bknColor!, btnColor!)
+        Theme.customTheme(CustomViewController.txtColor!, CustomViewController.bknColor!, CustomViewController.btnColor!)
         self.navigationController?.popViewController(animated: true)
     }
     

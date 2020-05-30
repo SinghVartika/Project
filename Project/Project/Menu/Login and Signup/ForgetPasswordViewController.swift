@@ -15,12 +15,20 @@ class ForgetPasswordViewController: UIViewController {
     @IBOutlet weak var nwPassword: UITextField!
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var petName: UITextField!
+    @IBOutlet weak var captcha : UILabel!
+    @IBOutlet weak var captchaAnswer : UITextField!
+    
     var login = manualLogin()
     var currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        captcha.text = randomString(length: 4)
         // Do any additional setup after loading the view.
+    }
+    
+    func randomString(length: Int) -> String {
+      let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+      return String((0..<length).map{ _ in letters.randomElement()! })
     }
     
     @IBAction func forgetPassword(_ sender: Any) {
@@ -31,6 +39,17 @@ class ForgetPasswordViewController: UIViewController {
             
             alertController.addAction(defaultAction)
             self.present(alertController, animated: true, completion: nil)
+        }
+        
+        else if ( captcha.text != captchaAnswer.text)
+        {
+            let alertController = UIAlertController(title: "Incorrect Answer for Captcha", message: "Kindly fill the text correctly.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+            self.captcha.text = randomString(length: 4)
         }
         
         login.forgetPassword(Name: userName.text, Password: nwPassword.text ?? "", rePassword: rePassword.text ?? "", ques: petName.text, view: self)

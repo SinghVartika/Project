@@ -26,9 +26,21 @@
 				<string>com.googleusercontent.apps.27842068939-f2702jqttqvdsosgkrgeu091tsedi051</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb255411539014695</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>255411539014695</string>
+	<key>FacebookDisplayName</key>
+	<string>Project</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>googlechromes</string>

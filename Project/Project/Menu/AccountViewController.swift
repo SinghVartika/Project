@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import GoogleSignIn
 
 class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -52,23 +52,10 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
         let nib3 = UINib(nibName: "LanguageTableViewCell", bundle: nil)
         tbview.register(nib3, forCellReuseIdentifier: "LanguageTableCell")
         
-        if UserDefaults.standard.object(forKey: "currentUser") != nil{
-        currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
-        }
+        //MARK: Displaying the name of the current user
         
-        if Auth.auth().currentUser != nil
-        {
-            let user:String = String(describing: Auth.auth().currentUser!.email!)
-            welcomeLabel.text = "Welcome \(user)"
-        }
-        else if (currentUser.isEmpty == false)
-        {
-            let user:String = String(describing: currentUser[0])
-            welcomeLabel.text = "Welcome \(user)"
-        }
-        else{
-            welcomeLabel.text = "Welcome"
-        }
+    
+            
         
     }
     
@@ -76,6 +63,30 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
         super.viewWillAppear(animated)
         
         tbview.reloadData()
+        
+        if UserDefaults.standard.object(forKey: "currentUser") != nil{
+            currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
+        }
+        
+        if Auth.auth().currentUser != nil
+        {
+            let user:String = String(describing: Auth.auth().currentUser!.displayName!)
+            welcomeLabel.text = "Welcome \(user)"
+        }
+        else if (currentUser.isEmpty == false)
+        {
+            let user:String = String(describing: currentUser[0])
+            welcomeLabel.text = "Welcome \(user)"
+        }
+        else if (GIDSignIn.sharedInstance()?.currentUser) != nil
+        {
+            let user = Auth.auth().currentUser
+            welcomeLabel.text = "Welcome \(String(describing: user?.displayName))"
+        }
+        else
+        {
+            welcomeLabel.text = "Welcome"
+        }
     }
     
     @IBAction func addImageBtn(_ sender: Any) {
