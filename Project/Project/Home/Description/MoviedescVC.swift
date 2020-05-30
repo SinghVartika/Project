@@ -207,6 +207,7 @@ class MoviedescVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     
+    //MARK: Making a movie as a favourite one
     @IBAction func fav(_ sender: Any) {
         
         if favListArray.contains(newfav) {

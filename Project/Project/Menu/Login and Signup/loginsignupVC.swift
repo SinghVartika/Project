@@ -47,6 +47,7 @@ class loginsignupVC: UIViewController , LoginButtonDelegate, GIDSignInDelegate{
         }
     }
     
+    //Logout Button funtion
     @IBAction func logOutAction(_ sender: Any) {
         
         if currentUser.isEmpty != true
@@ -72,6 +73,7 @@ class loginsignupVC: UIViewController , LoginButtonDelegate, GIDSignInDelegate{
         
     }
     
+    //Google signin button
     @IBAction func googleSignIn(sender: GIDSignInButton) {
         
         if currentUser.isEmpty != true
@@ -127,6 +129,7 @@ class loginsignupVC: UIViewController , LoginButtonDelegate, GIDSignInDelegate{
         }
     }
     
+    //Facebook sign in
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         if let error = error {
             print(error.localizedDescription)

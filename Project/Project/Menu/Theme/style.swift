@@ -50,6 +50,8 @@ struct Theme {
     static public func updateDisplay() {
         let proxyButton = UIButton.appearance()
         proxyButton.setTitleColor(Theme.buttonTextColor, for: .normal)
+        proxyButton.titleLabel?.font = UIFont(name: self.font ?? "", size: 18)
+        proxyButton.titleLabel?.backgroundColor = Theme.buttonBackgroundColor
         if (proxyButton.isHighlighted == true)
         {
             proxyButton.backgroundColor = Theme.buttonBackgroundColorHighlighted

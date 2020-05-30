@@ -25,6 +25,7 @@ class CustomViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    //Selecting the text color
     @IBAction func txtColor(_ sender: Any) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "TextSelectorViewController")
@@ -32,12 +33,14 @@ class CustomViewController: UIViewController {
         
     }
     
+    //Selecting the backgound color
     @IBAction func bkColor(_ sender: Any) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "BackgroundSelectorViewController")
         self.navigationController!.pushViewController(vc, animated: true)
     }
     
+    //Selecting the Button color
     @IBAction func btnColor(_ sender: Any) {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "ButtonSelectorViewController")
@@ -51,6 +54,7 @@ class CustomViewController: UIViewController {
         self.navigationController!.pushViewController(vc, animated: true)
     }
     
+    //Applying the selected theme
     @IBAction func ApplySelection(_ sender: Any) {
         
         let sample = UILabel.appearance()
