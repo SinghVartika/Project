@@ -629,7 +629,7 @@
                                     <constraint firstAttribute="height" constant="50" id="Kwg-aH-ikw"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="googleSignInSender:" destination="d2H-gd-FXl" eventType="touchUpInside" id="hzN-9O-40x"/>
+                                    <action selector="googleSignInSender:" destination="d2H-gd-FXl" eventType="valueChanged" id="Dvz-Ia-0da"/>
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NR7-aa-oPb">
@@ -676,8 +676,8 @@
                     </view>
                     <connections>
                         <outlet property="login" destination="HLX-KL-phZ" id="uCH-lB-gYy"/>
-                        <outlet property="signInButton" destination="EQn-CT-Lzg" id="KCD-JL-p3O"/>
-                        <outlet property="signin" destination="HLX-KL-phZ" id="Rm4-ka-vtN"/>
+                        <outlet property="loginButton" destination="WDg-5l-Mkl" id="9fM-06-DEg"/>
+                        <outlet property="signin" destination="dmF-lG-ypj" id="Fk2-x7-oMU"/>
                         <outlet property="user" destination="NR7-aa-oPb" id="xyC-uA-dGj"/>
                     </connections>
                 </viewController>

@@ -68,9 +68,7 @@ class loginsignupVC: UIViewController , LoginButtonDelegate, GIDSignInDelegate{
             GIDSignIn.sharedInstance().signOut()
         }
         
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "AccountViewController")
-        self.navigationController!.pushViewController(vc, animated: true)
+        self.navigationController?.popViewController(animated: true)
         
     }
     

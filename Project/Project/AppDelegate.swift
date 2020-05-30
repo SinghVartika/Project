@@ -15,7 +15,7 @@ import FBSDKCoreKit
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate{
     
     
 
@@ -65,6 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
       -> Bool {
       return GIDSignIn.sharedInstance().handle(url)
     }
+    
+
     
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.

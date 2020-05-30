@@ -92,9 +92,7 @@ class manualLogin : login
             
             
             
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "AccountViewController")
-            view.navigationController?.pushViewController(vc, animated: true)
+            view.navigationController?.popViewController(animated: true)
             
         }
     }
@@ -192,9 +190,7 @@ class manualLogin : login
            
             UserDefaults.standard.set(currentUser, forKey: "currentUser")
             UserDefaults.standard.set(allUsers, forKey: "users")
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "AccountViewController")
-            view.navigationController!.pushViewController(vc, animated: true)
+            view.navigationController?.popViewController(animated: true)
             currentUser.removeAll()
         }
         
@@ -276,9 +272,7 @@ class manualLogin : login
             UserDefaults.standard.set(allUsers, forKey: "users")
             temp?.removeAll()
             
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "AccountViewController")
-            view.navigationController?.pushViewController(vc, animated: true)
+            view.navigationController?.popViewController(animated: true)
             
         }
     }
