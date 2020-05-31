@@ -16,10 +16,13 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordConfirm: UITextField!
     @IBOutlet weak var securityQuestion: UITextField!
 
-    var currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
+    var currentUser : [String] = []
     var login = manualLogin()
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UserDefaults.standard.object(forKey: "currentUser") != nil{
+        currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
+        }
     }
     
     @IBAction func signUpAction(_ sender: Any) {

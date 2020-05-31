@@ -24,7 +24,8 @@ class loginsignupVC: UIViewController , LoginButtonDelegate, GIDSignInDelegate{
     @IBOutlet weak var signInButton: GIDSignInButton!
     @IBOutlet weak var loginButton: FBLoginButton!
     @IBOutlet weak var user: UILabel!
-    var currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
+    var currentUser : [String] = []
+    
     
     var loginned = manualLogin()
     override func viewDidLoad() {
@@ -74,6 +75,9 @@ class loginsignupVC: UIViewController , LoginButtonDelegate, GIDSignInDelegate{
     
     //Google signin button
     @IBAction func googleSignIn(sender: GIDSignInButton) {
+        if UserDefaults.standard.object(forKey: "currentUser") != nil{
+        currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
+        }
         
         if currentUser.isEmpty != true
         {

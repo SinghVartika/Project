@@ -12,7 +12,7 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
-    var currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
+    var currentUser : [String] = []
     
     @IBOutlet weak var name : UITextField!
     @IBOutlet weak var password : UITextField!
@@ -20,6 +20,9 @@ class LoginViewController: UIViewController {
     var login = manualLogin()
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UserDefaults.standard.object(forKey: "currentUser") != nil{
+        currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
+        }
     }
     
     //MARK: call for the forget password View
