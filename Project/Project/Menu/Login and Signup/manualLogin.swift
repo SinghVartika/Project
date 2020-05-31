@@ -22,6 +22,7 @@ class manualLogin : login
         let k = Name
         var temp : [String]?
         temp?.removeAll()
+        
         if UserDefaults.standard.object(forKey: "users") != nil{
         allUsers = UserDefaults.standard.object(forKey: "users") as! [[String]]
         }
@@ -30,7 +31,8 @@ class manualLogin : login
         currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
         }
         
-        if allUsers == [[]]
+        //Check if no user exists
+        if (allUsers.count == 0)
         {
             let alertController = UIAlertController(title: "No user exists", message: "No one is logged in. First sign in to access the login functionality.", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -39,6 +41,8 @@ class manualLogin : login
             view.present(alertController, animated: true, completion: nil)
         }
         
+        if(allUsers.count != 0)
+        {
         for i in 0...allUsers.count-1
         {
             if k == allUsers[i][0]
@@ -46,6 +50,8 @@ class manualLogin : login
                 temp = allUsers[i]
             }
         }
+        }
+        
         
         //Check for the empty labels
         
@@ -72,9 +78,19 @@ class manualLogin : login
             alertController.addAction(defaultAction)
             view.present(alertController, animated: true, completion: nil)
         }
-            
+        
+            // If account does not exists
         else if temp == nil{
             let alertController = UIAlertController(title: "User does not exist", message: "Kindly sign-in with an account first to use the login", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+
+            alertController.addAction(defaultAction)
+            view.present(alertController, animated: true, completion: nil)
+        }
+            
+            // If the password entered is wrong
+        else if temp![1] != Password{
+            let alertController = UIAlertController(title: "Password Incorrect", message: "Pleae login using the correct password. If you have forgotten your password then use the forgot password option.", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
 
             alertController.addAction(defaultAction)
@@ -85,16 +101,18 @@ class manualLogin : login
         else{
             
             currentUser = user
-        
+            
             UserDefaults.standard.set(currentUser, forKey: "currentUser")
             UserDefaults.standard.set(allUsers, forKey: "users")
             temp?.removeAll()
-            
-            
-            
+            user.removeAll()
+            currentUser.removeAll()
             view.navigationController?.popViewController(animated: true)
             
         }
+        temp?.removeAll()
+        user.removeAll()
+        currentUser.removeAll()
     }
     
     //MARK: Log out for the manual users
@@ -121,7 +139,10 @@ class manualLogin : login
         // Complete the log out process
         else{
             currentUser.removeAll()
-        
+            //allUsers.removeAll()
+            
+            print (allUsers)
+            print (currentUser)
             UserDefaults.standard.set(currentUser, forKey: "currentUser")
             UserDefaults.standard.set(allUsers, forKey: "users")
             
@@ -143,11 +164,30 @@ class manualLogin : login
         user.append(Password)
         user.append(ques ?? "")
         
-        
+        var temp : [String]?
+        if(allUsers.count != 0)
+        {
+        for i in 0...allUsers.count-1
+        {
+            if Name == allUsers[i][0]
+            {
+                temp = allUsers[i]
+            }
+        }
+        }
+        //User already exists
+        if temp != nil
+        {
+            let alertController = UIAlertController(title: "User already exist", message: "The user name you have entered already exists.", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+
+            alertController.addAction(defaultAction)
+            view.present(alertController, animated: true, completion: nil)
+        }
         
         //Check for the empty labels
         
-        if Name == "" || Password == "" || rePassword == "" || ques == ""
+         if Name == "" || Password == "" || rePassword == "" || ques == ""
         {
             let alertController = UIAlertController(title: "Empty Values", message: "Please enter all the informations. All the informations are compulsory ", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -187,12 +227,15 @@ class manualLogin : login
             currentUser = user
             allUsers.append(user)
             user.removeAll()
-           
+            temp?.removeAll()
+            
             UserDefaults.standard.set(currentUser, forKey: "currentUser")
             UserDefaults.standard.set(allUsers, forKey: "users")
             view.navigationController?.popViewController(animated: true)
             currentUser.removeAll()
         }
+        user.removeAll()
+        temp?.removeAll()
         
     }
     
@@ -261,20 +304,25 @@ class manualLogin : login
         //Change the password
         else
         {
-            for i in 0...allUsers.count-1
+            for j in 0...allUsers.count-1
             {
-                if Name == allUsers[i][0]
+                if Name == allUsers[j][0]
                 {
-                    allUsers[i][2] = ques!
+                    allUsers[j].removeAll()
+                    allUsers[j] += [Name! , Password , ques!]
+                    
                 }
             }
             UserDefaults.standard.set(currentUser, forKey: "currentUser")
             UserDefaults.standard.set(allUsers, forKey: "users")
             temp?.removeAll()
-            
+            currentUser.removeAll()
+            allUsers.removeAll()
             view.navigationController?.popViewController(animated: true)
             
         }
+        currentUser.removeAll()
+        allUsers.removeAll()
     }
     
 

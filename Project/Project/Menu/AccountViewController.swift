@@ -39,6 +39,7 @@ class AccountViewController: UIViewController,UIImagePickerControllerDelegate,UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         imageOutlet.layer.cornerRadius = imageOutlet.frame.height/2
         imageOutlet.contentMode = .scaleToFill
         imageOutlet.clipsToBounds = true
