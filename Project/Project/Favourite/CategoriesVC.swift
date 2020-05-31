@@ -33,8 +33,12 @@ class CategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         super.viewWillAppear(animated)
         
-        favListArray = UserDefaults.standard.object(forKey: "favList") as! [[String]]
-        Counter = UserDefaults.standard.object(forKey: "count") as! Int
+        if UserDefaults.standard.object(forKey: "favList") != nil {
+            favListArray = UserDefaults.standard.object(forKey: "favList") as! [[String]]
+        }
+        if UserDefaults.standard.object(forKey: "count") != nil{
+            Counter = UserDefaults.standard.object(forKey: "count") as! Int
+        }
         self.favMovies.reloadData()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
