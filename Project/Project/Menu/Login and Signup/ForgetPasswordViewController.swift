@@ -19,10 +19,13 @@ class ForgetPasswordViewController: UIViewController {
     @IBOutlet weak var captchaAnswer : UITextField!
     
     var login = manualLogin()
-    var currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
+    var currentUser : [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         captcha.text = randomString(length: 4)
+        if UserDefaults.standard.object(forKey: "currentUser") != nil{
+        currentUser = UserDefaults.standard.object(forKey: "currentUser") as! [String]
+        }
         // Do any additional setup after loading the view.
     }
     
