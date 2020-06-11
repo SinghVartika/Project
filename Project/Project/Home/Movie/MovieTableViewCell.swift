@@ -60,6 +60,11 @@ struct details: Codable
     var overview: String?
 }
 
+protocol MovieDescriptionDelegate : class
+{
+    func movieDetails(backDropPath : String , posterPath : String , title : String , releaseDate : String , voteAverage : Float , overview : String , type : Int)
+}
+
 class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var poster : UICollectionView!
@@ -78,6 +83,7 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     static var desc : Data?
     static var mov : details?
     
+    weak var delegate: MovieDescriptionDelegate? = nil
     static var fav: [details?] = []
     static var type = -1
     var section = -1
@@ -277,26 +283,40 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         switch collectionView.tag
         {
         case 0:
-            MovieTableViewCell.type = 0
-            MovieTableViewCell.desc = responseModel!.results[indexPath.row]
+            if responseModel!.results[indexPath.row].media_type == "tv"
+            {
+                delegate?.movieDetails(backDropPath: responseModel!.results[indexPath.row].backdrop_path ?? "", posterPath: responseModel!.results[indexPath.row].poster_path ?? "", title: responseModel!.results[indexPath.row].name ?? "", releaseDate: responseModel!.results[indexPath.row].first_air_date ?? "", voteAverage: responseModel!.results[indexPath.row].vote_average ?? 0.0, overview: responseModel!.results[indexPath.row].overview ?? "", type: 0)
+            }
+            else
+            {
+                delegate?.movieDetails(backDropPath: responseModel!.results[indexPath.row].backdrop_path ?? "", posterPath: responseModel!.results[indexPath.row].poster_path ?? "", title: responseModel!.results[indexPath.row].title ?? "", releaseDate: responseModel!.results[indexPath.row].release_date ?? "", voteAverage: responseModel!.results[indexPath.row].vote_average ?? 0.0, overview: responseModel!.results[indexPath.row].overview ?? "", type: 0)
+            }
+//            MovieTableViewCell.type = 0
+//            MovieTableViewCell.desc = responseModel!.results[indexPath.row]
         case 1:
-            MovieTableViewCell.type = 1
-            MovieTableViewCell.mov = bestMovie!.results[indexPath.row]
+            delegate?.movieDetails(backDropPath: bestMovie!.results[indexPath.row].backdrop_path ?? "", posterPath: bestMovie!.results[indexPath.row].poster_path ?? "", title: bestMovie!.results[indexPath.row].title ?? "", releaseDate: bestMovie!.results[indexPath.row].release_date ?? "", voteAverage: bestMovie!.results[indexPath.row].vote_average ?? 0.0, overview: bestMovie!.results[indexPath.row].overview ?? "", type: 1)
+//            MovieTableViewCell.type = 1
+//            MovieTableViewCell.mov = bestMovie!.results[indexPath.row]
         case 2:
-            MovieTableViewCell.type = 2
-            MovieTableViewCell.mov = popular!.results[indexPath.row]
+            delegate?.movieDetails(backDropPath: popular!.results[indexPath.row].backdrop_path ?? "", posterPath: popular!.results[indexPath.row].poster_path ?? "", title: popular!.results[indexPath.row].title ?? "", releaseDate: popular!.results[indexPath.row].release_date ?? "", voteAverage: popular!.results[indexPath.row].vote_average ?? 0.0, overview: popular!.results[indexPath.row].overview ?? "", type: 2)
+//            MovieTableViewCell.type = 2
+//            MovieTableViewCell.mov = popular!.results[indexPath.row]
         case  3:
-            MovieTableViewCell.type = 3
-            MovieTableViewCell.mov = scifi!.results[indexPath.row]
+            delegate?.movieDetails(backDropPath:  scifi!.results[indexPath.row].backdrop_path ?? "", posterPath: scifi!.results[indexPath.row].poster_path ?? "", title: scifi!.results[indexPath.row].title ?? "", releaseDate: scifi!.results[indexPath.row].release_date ?? "", voteAverage: scifi!.results[indexPath.row].vote_average ?? 0.0, overview: scifi!.results[indexPath.row].overview ?? "", type: 3)
+//            MovieTableViewCell.type = 3
+//            MovieTableViewCell.mov = scifi!.results[indexPath.row]
         case 4:
-            MovieTableViewCell.type = 4
-            MovieTableViewCell.mov = kid!.results[indexPath.row]
+            delegate?.movieDetails(backDropPath:    kid!.results[indexPath.row].backdrop_path ?? "", posterPath: kid!.results[indexPath.row].poster_path ?? "", title: kid!.results[indexPath.row].title ?? "", releaseDate: kid!.results[indexPath.row].release_date ?? "", voteAverage: kid!.results[indexPath.row].vote_average ?? 0.0, overview: kid!.results[indexPath.row].overview ?? "", type: 4)
+//            MovieTableViewCell.type = 4
+//            MovieTableViewCell.mov = kid!.results[indexPath.row]
         default:
-            MovieTableViewCell.type = 5
-            MovieTableViewCell.mov = adult!.results[indexPath.row]
+            delegate?.movieDetails(backDropPath:  adult!.results[indexPath.row].backdrop_path ?? "", posterPath: adult!.results[indexPath.row].poster_path ?? "", title: adult!.results[indexPath.row].title ?? "", releaseDate: adult!.results[indexPath.row].release_date ?? "", voteAverage: adult!.results[indexPath.row].vote_average ?? 0.0, overview: adult!.results[indexPath.row].overview ?? "", type: 5)
+//            MovieTableViewCell.type = 5
+//            MovieTableViewCell.mov = adult!.results[indexPath.row]
         }
         
         //print (HomeVC.desc!)
