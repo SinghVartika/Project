@@ -10,55 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
-struct Trending: Codable{
-    let page: Int?
-    let results: [Data]
-}
 
-struct Data: Codable {
-    var id: Int?
-    var video: Bool?
-    var vote_count: Int?
-    var vote_average: Float?
-    var title: String?
-    var name: String?
-    var release_date: String?
-    var original_language: String?
-    var original_title: String?
-    var backdrop_path: String?
-    var original_name: String?
-    var first_air_date: String?
-    var adult: Bool?
-    var overview: String?
-    var poster_path: String?
-    var popularity: Float?
-    var media_type: String?
-}
-
-struct movie: Codable
-{
-    let page: Int
-    let total_results: Int
-    let total_pages: Int
-    let results: [details]
-}
-
-struct details: Codable
-{
-    var popularity: Float?
-    var vote_count: Int?
-    var video: Bool?
-    var vote_average: Float?
-    var title: String?
-    var release_date: String?
-    var original_language: String?
-    var original_title: String?
-    var backdrop_path: String?
-    var adult: Bool?
-    var poster_path: String?
-    var id: Int?
-    var overview: String?
-}
 
 protocol MovieDescriptionDelegate : class
 {
@@ -284,6 +236,8 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        poster.deselectItem(at: indexPath, animated: true)
+
         switch collectionView.tag
         {
         case 0:
@@ -321,9 +275,7 @@ class MovieTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionV
         
         //print (HomeVC.desc!)
         
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "MoviedescVC")
-        view?.navigationController!.pushViewController(vc, animated: true)
+        
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var str : String

@@ -34,6 +34,7 @@
 		4558A080247FCAB700E1BBB4 /* ButtonSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558A07F247FCAB700E1BBB4 /* ButtonSelectorViewController.swift */; };
 		4558A082247FCACF00E1BBB4 /* TitleTextSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558A081247FCACF00E1BBB4 /* TitleTextSelectorViewController.swift */; };
 		4558A0842481424400E1BBB4 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4558A0832481424400E1BBB4 /* ForgetPasswordViewController.swift */; };
+		455DA6E82496967400FC266F /* MovieModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455DA6E72496967400FC266F /* MovieModels.swift */; };
 		45949E3B247D4F4700D1F0D8 /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45949E39247D4F4700D1F0D8 /* PosterCollectionViewCell.swift */; };
 		45949E3C247D4F4700D1F0D8 /* PosterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45949E3A247D4F4700D1F0D8 /* PosterCollectionViewCell.xib */; };
 		45949E41247E783200D1F0D8 /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45949E3F247E783200D1F0D8 /* FavTableViewCell.swift */; };
@@ -134,6 +135,7 @@
 		4558A07F247FCAB700E1BBB4 /* ButtonSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSelectorViewController.swift; sourceTree = "<group>"; };
 		4558A081247FCACF00E1BBB4 /* TitleTextSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextSelectorViewController.swift; sourceTree = "<group>"; };
 		4558A0832481424400E1BBB4 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		455DA6E72496967400FC266F /* MovieModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModels.swift; sourceTree = "<group>"; };
 		45949E39247D4F4700D1F0D8 /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
 		45949E3A247D4F4700D1F0D8 /* PosterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterCollectionViewCell.xib; sourceTree = "<group>"; };
 		45949E3F247E783200D1F0D8 /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				454D83AE2424DD7900490CE4 /* HomeVC.swift */,
+				455DA6E72496967400FC266F /* MovieModels.swift */,
 				45949E3E247D4F5900D1F0D8 /* Description */,
 				45949E3D247D4F4E00D1F0D8 /* Movie */,
 			);
@@ -743,6 +746,7 @@
 				45F6FD7E24767508008DF5DD /* TrendingCollectionViewCell.swift in Sources */,
 				45949E48247EDFD400D1F0D8 /* CustomViewController.swift in Sources */,
 				4599502524753D6F0018B629 /* CardViewController.swift in Sources */,
+				455DA6E82496967400FC266F /* MovieModels.swift in Sources */,
 				45B84144246FF9E90038D146 /* style.swift in Sources */,
 				45506DF824334EEC00510CDA /* languagepickerTableViewCell.swift in Sources */,
 				454D837C2424D96F00490CE4 /* AppDelegate.swift in Sources */,

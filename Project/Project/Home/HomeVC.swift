@@ -19,7 +19,7 @@ class HomeVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         movSection.dataSource = self
         movSection.delegate = self
         
@@ -56,6 +56,7 @@ class HomeVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
                 cell.pagecontrols.isHidden = true
             }
             cell.view = self
+            cell.delegate = self
             return cell
         }
         
@@ -90,3 +91,27 @@ class HomeVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+
+extension HomeVC : MovieDescriptionDelegate
+{
+    func movieDetails(backDropPath: String, posterPath: String, title: String, releaseDate: String, voteAverage: Float, overview: String, type: Int)
+    {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MoviedescVC") as! MoviedescVC
+        
+        vc.modalPresentationStyle = .fullScreen
+        vc.movieDescription = overview
+        vc.movieName = title
+        vc.movRating = String(voteAverage)
+        vc.movLanguage = "English"
+        vc.posterPath = "https://image.tmdb.org/t/p/w500\(backDropPath)"
+        
+        vc.movYear =  String(releaseDate.prefix(4))
+        vc.movType = type
+        
+        self.navigationController?.present(vc, animated: true, completion: nil)
+    }
+    
+    
+}

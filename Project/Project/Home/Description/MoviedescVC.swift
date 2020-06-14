@@ -12,7 +12,7 @@ import AlamofireImage
 
 
 
-class MoviedescVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MovieDescriptionDelegate {
+class MoviedescVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var favButton: UIButton!
     @IBOutlet weak var movImage : UIImageView!
@@ -30,19 +30,28 @@ class MoviedescVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var views: UIViewController?
     var favListArray: [[String]] = []
     var counter : Int = 0
-    var movType : Int = -1
+    var movCategory : Int = -1
+    var movieDescription : String?
+    var movieName : String?
+    var movRating : String?
+    var movLanguage : String?
+    var posterPath : String?
+    var movYear : String?
+    var movieType : String?
+    var movType : Int?
     
-    func movieDetails(backDropPath: String, posterPath: String, title: String, releaseDate: String, voteAverage: Float, overview: String, type: Int) {
-        self.movName.text = title
-        self.aboutMovie.text = description
-        self.rating.text = String(voteAverage)
-        self.language.text = "English"
-        let str = "https://image.tmdb.org/t/p/w500\(posterPath)"
-        let URL = NSURL(string: str)!
-        self.movImage.af_setImage(withURL: URL as URL)
-        self.year.text =  String(releaseDate.prefix(4))
-        self.movType = type
-    }
+    
+//    func movieDetails(backDropPath: String, posterPath: String, title: String, releaseDate: String, voteAverage: Float, overview: String, type: Int) {
+//        self.movName.text = title
+//        self.aboutMovie.text = description
+//        self.rating.text = String(voteAverage)
+//        self.language.text = "English"
+//        let str = "https://image.tmdb.org/t/p/w500\(posterPath)"
+//        let URL = NSURL(string: str)!
+//        self.movImage.af_setImage(withURL: URL as URL)
+//        self.year.text =  String(releaseDate.prefix(4))
+//        self.movType = type
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
 
@@ -62,12 +71,19 @@ class MoviedescVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         //print (HomeVC.desc!)
         extra.dataSource = self
         extra.delegate = self
-        
-        movieDetailCell.delegate = self
+        aboutMovie.text = movieDescription ?? ""
+        movName.text = movieName ?? ""
+        rating.text = String(describing : movRating)
+        let str = posterPath ?? ""
+        let URL = NSURL(string: str)!
+        self.movImage.af_setImage(withURL: URL as URL)
+        self.language.text = movLanguage ?? ""
+        self.year.text =  movYear ?? ""
+        self.rating.text = movRating ?? ""
         views = self
         let nib = UINib.init(nibName: "PosterCollectionViewCell", bundle: nil)
         extra.register(nib, forCellWithReuseIdentifier: "movPosterCell")
-        //getData()
+        getData()
         
          
         
@@ -216,6 +232,17 @@ class MoviedescVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+//        aboutMovie.text = mov?.results[indexPath.row].overview ?? ""
+//        movName.text = mov?.results[indexPath.row].original_title ?? ""
+//        rating.text = String(describing : mov?.results[indexPath.row].vote_average ?? 0)
+//        let str = "https://image.tmdb.org/t/p/w500\(mov?.results[indexPath.row].backdrop_path ?? "")"
+//        let URL = NSURL(string: str)!
+//        self.movImage.af_setImage(withURL: URL as URL)
+//        self.language.text = "English"
+//        self.year.text =  String((mov?.results[indexPath.row].release_date ?? "").prefix(4))
+//        self.loadView()
+        
+        
 //            MovieTableViewCell.mov = mov?.results[indexPath.row]
 //
 //        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
@@ -249,6 +276,10 @@ class MoviedescVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
         favButton.contentMode = .scaleAspectFit
         
+    }
+    @IBAction func PopAction(_ sender: UIButton) {
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
